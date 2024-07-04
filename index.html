@@ -3,428 +3,290 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة التعليم الإلكتروني</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>عالم التعلم الممتع</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f9;
+            font-family: 'Tajawal', sans-serif;
+            background-color: #e6f0ff;
             color: #333;
             margin: 0;
             padding: 0;
-            transition: background-color 0.3s ease; /* Add transition for smooth dark mode switch */
+            transition: background-color 0.3s ease;
         }
 
         header {
-            background-color: #4267B2;
+            background: linear-gradient(135deg, #0059ff 0%, #66a3ff 100%);
             color: #fff;
             padding: 1.5em 0;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2em;
+            box-shadow: 0 4px 8px rgba(0, 89, 255, 0.2);
         }
 
         header h1 {
             font-weight: bold;
-            letter-spacing: 1px;
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
         .container {
             max-width: 1200px;
             margin: auto;
-            padding: 0 1em;
+            padding: 2em 1em;
             text-align: center;
         }
 
-        .tool-card {
-            background-color: #fff;
-            padding: 2em;
-            margin: 1em;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-align: center;
-            font-weight: bold;
-            max-width: 300px;
-            width: 100%;
-            position: relative; 
-            cursor: pointer; 
-            overflow: hidden; /* Ensures the content hides properly */
-        }
-
-        .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-
-        .tool-card h3 {
-            margin-top: 0;
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #4267B2;
-            transition: color 0.3s ease; /* Add transition for smooth dark mode switch */
-        }
-
-        .tool-card p {
-            margin: 1em 0;
-            font-size: 1em;
-            line-height: 1.5;
-        }
-
-        .buttons {
-            width: 100%;
-        }
-
-        .buttons .btn {
-            width: 100%;
-            font-weight: bold;
-            padding: 0.75em 1.5em;
-            margin: 0.5em 0;
-            border-radius: 8px;
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
-
-        .buttons .btn-success:hover {
-            background-color: #28a745cc;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-       .greeting {
-            text-align: center;
-            margin-bottom: 1em;
-            font-size: 1.5em;
+        .greeting {
+            font-size: 1.8em;
             color: #0059ff;
             font-weight: bold;
-            transition: color 0.3s ease; /* Add transition for smooth dark mode switch */
+            margin-bottom: 1em;
         }
 
-        /* Dark mode styles */
-        body.dark-mode {
-            background-color: #1a1a1a;
-            color: #f0f0f0; 
+        .grade-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5em;
         }
 
-        body.dark-mode header {
-            background-color: #2c3e50;
-        }
-        body.dark-mode .tool-card {
-            background-color: #333;
-            color: #f0f0f0;
-        }
-
-        body.dark-mode .tool-card h3{
-            color: #f0d362; 
-        }
-        body.dark-mode .greeting {
-            color: #f0d362; 
+        .grade-card {
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0,89,255,0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: calc(33.333% - 1em);
+            min-width: 250px;
+            cursor: pointer;
         }
 
-        /* Dark mode toggle button */
+        .grade-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0,89,255,0.2);
+        }
+
+        .grade-card-header {
+            background: linear-gradient(45deg, #0059ff, #66a3ff);
+            color: #fff;
+            padding: 1em;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .grade-card-body {
+            padding: 1.5em;
+        }
+
+        .grade-card-body p {
+            margin: 0 0 1em;
+            font-size: 1em;
+            color: #0059ff;
+        }
+
+        .visit-btn {
+            background-color: #0059ff;
+            color: white;
+            border: none;
+            padding: 0.8em 1.5em;
+            font-size: 1em;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .visit-btn:hover {
+            background-color: #003cb3;
+            transform: scale(1.05);
+        }
+
+        #quote-section {
+            background: linear-gradient(135deg, #ffffff 0%, #e6f0ff 100%);
+            border-radius: 15px;
+            padding: 1.5em;
+            margin-bottom: 2em;
+            box-shadow: 0 4px 8px rgba(0,89,255,0.1);
+        }
+
+        #quote-text {
+            font-size: 1.2em;
+            font-style: italic;
+            color: #0059ff;
+            line-height: 1.6;
+        }
+
         #dark-mode-toggle {
             position: fixed;
             top: 20px;
             right: 20px;
-            padding: 10px 15px;
-            background-color: #ffffff;
-            color: #000000;
+            background-color: #fff;
+            color: #0059ff;
             border: none;
-            border-radius: 25px;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5em;
             cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0,89,255,0.2);
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         #dark-mode-toggle:hover {
-            background-color: #000000;
-            color: #ffffff;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            background-color: #0059ff;
+            color: #fff;
         }
 
-        body.dark-mode #dark-mode-toggle {
-            background-color: #f0f0f0;
-            color: #1a1a1a;
+        body.dark-mode {
+            background-color: #001f3f;
+            color: #e6f0ff;
         }
 
-        body.dark-mode #dark-mode-toggle:hover {
-            background-color: #ffffff;
+        body.dark-mode header {
+            background: linear-gradient(135deg, #003366 0%, #0059ff 100%);
         }
-         /* Style for the daily quote section */
-        #quote-section {
-            background: linear-gradient(to right, #e0ffff, #cce0ff); /* Light blue gradient */
-            border: 2px solid #87ceeb; /* Sky blue border */
-            border-radius: 10px;
-            padding: 25px;
-            margin-bottom: 20px;
-            text-align: center;
-            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-            position: relative; /* For positioning the stars */
-            overflow: hidden; /* To ensure the animation stays within the container */
+
+        body.dark-mode .grade-card {
+            background-color: #002952;
+            color: #e6f0ff;
+        }
+
+        body.dark-mode .grade-card-header {
+            background: linear-gradient(45deg, #003366, #0059ff);
+        }
+
+        body.dark-mode .grade-card-body p {
+            color: #66a3ff;
         }
 
         body.dark-mode #quote-section {
-            background: linear-gradient(to right, #1a1a1a, #2a2a2a); /* Dark mode gradient */
-            border: 2px solid #3498db; /* Blue border for dark mode */
-        }
-
-        /* Styling for the quote text */
-        #quote-text {
-            font-size: 1.8em;
-            font-style: italic;
-            color: #191970; /* Dark blue color */
-            margin-bottom: 15px;
+            background: linear-gradient(135deg, #001f3f 0%, #002952 100%);
+            color: #e6f0ff;
         }
 
         body.dark-mode #quote-text {
-            color: #f0d362; /* Adjust color for dark mode */
+            color: #66a3ff;
         }
 
-        /* Styling for the author */
-        #quote-author {
-            font-weight: bold;
-            color: #000080; /* Navy blue color */
-            font-size: 1.2em;
+        body.dark-mode #dark-mode-toggle {
+            background-color: #001f3f;
+            color: #e6f0ff;
         }
 
-        body.dark-mode #quote-author {
-            color: #f0f0f0; /* Adjust color for dark mode */
+        body.dark-mode #dark-mode-toggle:hover {
+            background-color: #e6f0ff;
+            color: #001f3f;
         }
 
-        /* Adding some visual effects: Stars */
-        #quote-section::before {
-            content: "";
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            width: 20px;
-            height: 20px;
-            background-color: #ffd700; /* Gold color for the star */
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            opacity: 0.8;
-            animation: sparkle 4s infinite linear;
+        @media (max-width: 768px) {
+            .grade-card {
+                width: calc(50% - 1em);
+            }
         }
 
-        #quote-section::after {
-            content: "";
-            position: absolute;
-            bottom: -5px;
-            right: -5px;
-            width: 15px;
-            height: 15px;
-            background-color: #ffd700; /* Gold color for the star */
-            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-            opacity: 0.8;
-            animation: sparkle 3s infinite linear;
-        }
-
-        /* Animation for the stars */
-        @keyframes sparkle {
-            0% { transform: rotate(0deg); opacity: 0.8; }
-            50% { transform: rotate(180deg); opacity: 0.5; }
-            100% { transform: rotate(360deg); opacity: 0.8; }
-        }
-        /* New style to hide content */
-        .hidden {
-            display: none;
-        }
-        /* Back Button Style */
-        #back-button {
-            display: none; /* Initially hidden */
-            position: relative;
-            top: 15px;
-            left: 15px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #back-button:hover {
-            background-color: #217dbb;
+        @media (max-width: 480px) {
+            .grade-card {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>منصة التعليم الإلكتروني</h1>
+    <h1>عالم التعلم الممتع</h1>
 </header>
+
 <button id="dark-mode-toggle">
-    <i class="fas fa-adjust"></i> الوضع الليلي
+    <i class="fas fa-moon"></i>
 </button>
 
-<button id="back-button" onclick="returnToMain()">
-    <i class="fas fa-arrow-left"></i> العودة إلى الصفحة الرئيسية
-</button>
+<div class="container">
+    <div class="greeting">مرحبًا بك في رحلة المعرفة والمرح!</div>
 
-<div class="container" id="main-content">
-    <div class="greeting">مرحبا بكم في منصة التعليم الإلكتروني!</div>
-
-    <!-- Daily Quote Section -->
     <div id="quote-section">
         <div id="quote-text"></div>
-        <div id="quote-author"></div>
     </div>
 
-    <div class="row">
-        <div class="col-md-4">
-            <div class="tool-card" onclick="showGradeContent('year1-content')">
-                <h3>السنة الأولى</h3>
-                <p>مجموعة من الموارد التعليمية والأنشطة التفاعلية</p>
-                <div class="buttons">
-                    <button class="btn btn-success">زيارة</button>
-                </div>
+    <div class="grade-cards">
+        <div class="grade-card" onclick="location.href='1.html'">
+            <div class="grade-card-header">السنة الأولى</div>
+            <div class="grade-card-body">
+                <p>انطلق في مغامرة التعلم الأولى</p>
+                <button class="visit-btn">هيا بنا</button>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="tool-card" onclick="showGradeContent('year2-content')">
-                <h3>السنة الثانية</h3>
-                <p>مجموعة من الموارد التعليمية والأنشطة التفاعلية</p>
-                <div class="buttons">
-                    <button class="btn btn-success">زيارة</button>
-                </div>
+        <div class="grade-card" onclick="location.href='2.html'">
+            <div class="grade-card-header">السنة الثانية</div>
+            <div class="grade-card-body">
+                <p>اكتشف عجائب المعرفة الجديدة</p>
+                <button class="visit-btn">استكشف</button>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="tool-card" onclick="showGradeContent('year3-content')">
-                <h3>السنة الثالثة</h3>
-                <p>مجموعة من الموارد التعليمية والأنشطة التفاعلية</p>
-                <div class="buttons">
-                    <button class="btn btn-success">زيارة</button>
-                </div>
+        <div class="grade-card" onclick="location.href='3.html'">
+            <div class="grade-card-header">السنة الثالثة</div>
+            <div class="grade-card-body">
+                <p>حان وقت التحديات المثيرة</p>
+                <button class="visit-btn">ابدأ</button>
             </div>
         </div>
-    </div>
-    <div class="row"> 
-        <div class="col-md-4">
-            <div class="tool-card" onclick="showGradeContent('year4-content')">
-                <h3>السنة الرابعة</h3>
-                <p>مجموعة من الموارد التعليمية والأنشطة التفاعلية</p>
-                <div class="buttons">
-                    <button class="btn btn-success">زيارة</button>
-                </div>
+        <div class="grade-card" onclick="location.href='4.html'">
+            <div class="grade-card-header">السنة الرابعة</div>
+            <div class="grade-card-body">
+                <p>استعد لمغامرات تعليمية جديدة</p>
+                <button class="visit-btn">انطلق</button>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="tool-card" onclick="showGradeContent('year5-content')">
-                <h3>السنة الخامسة</h3>
-                <p>مجموعة من الموارد التعليمية والأنشطة التفاعلية</p>
-                <div class="buttons">
-                    <button class="btn btn-success">زيارة</button>
-                </div>
+        <div class="grade-card" onclick="location.href='5.html'">
+            <div class="grade-card-header">السنة الخامسة</div>
+            <div class="grade-card-body">
+                <p>اصنع إنجازات رائعة هذا العام</p>
+                <button class="visit-btn">شارك</button>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="tool-card" onclick="showGradeContent('year6-content')">
-                <h3>السنة السادسة</h3>
-                <p>مجموعة من الموارد التعليمية والأنشطة التفاعلية</p>
-                <div class="buttons">
-                    <button class="btn btn-success">زيارة</button>
-                </div>
+        <div class="grade-card" onclick="location.href='6.html'">
+            <div class="grade-card-header">السنة السادسة</div>
+            <div class="grade-card-body">
+                <p>استعد للتحديات الكبيرة</p>
+                <button class="visit-btn">تقدم</button>
             </div>
         </div>
     </div>
 </div>
-<!-- Hidden Content for each Grade -->
-<div id="year1-content" class="container hidden">
-    <h1>محتوى السنة الأولى</h1>
-    <p>هذا النص هو مثال لنوع المحتوى الذي يمكن أن يكون هنا للصف الأول. 
-        يمكنك إضافة نصوص وصور وفيديوهات أو أي عناصر HTML أخرى.</p>
-        
-</div>
-
-<div id="year2-content" class="container hidden">
-    <h1>محتوى السنة الثانية</h1>
-    <p>هذا مثال لمحتوى الصف الثاني. </p>
-</div>
-
-<div id="year3-content" class="container hidden">
-    <h1>محتوى السنة الثالثة</h1>
-    <p>هذا مثال لمحتوى الصف الثالث.</p>
-</div>
-
-<div id="year4-content" class="container hidden">
-    <h1>محتوى السنة الرابعة</h1>
-    <p>هذا مثال لمحتوى الصف الرابع.</p>
-</div>
-
-<div id="year5-content" class="container hidden">
-    <h1>محتوى السنة الخامسة</h1>
-    <p>هذا مثال لمحتوى الصف الخامس.</p>
-</div>
-
-<div id="year6-content" class="container hidden">
-    <h1>محتوى السنة السادسة</h1>
-    <p>هذا مثال لمحتوى الصف السادس.</p>
-</div>
-
-
 
 <script>
-     // Function to show grade-specific content
-    function showGradeContent(contentId) {
-        // Hide the main content
-        document.getElementById('main-content').classList.add('hidden');
-        // Show the back button
-        document.getElementById('back-button').style.display = 'block';
-        // Show the selected grade content
-        document.getElementById(contentId).classList.remove('hidden');
-    }
-   
-     function returnToMain() {
-         // Hide all grade content divs
-         const gradeContentDivs = document.querySelectorAll('[id*="content"]'); 
-         gradeContentDivs.forEach(div => {
-             div.classList.add('hidden');
-         });
- 
-         // Show the main content and hide the back button
-         document.getElementById('main-content').classList.remove('hidden');
-         document.getElementById('back-button').style.display = 'none';
-     }
-
-    // Dark mode toggle
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const body = document.body;
 
     darkModeToggle.addEventListener('click', () => {
         body.classList.toggle('dark-mode');
         if (body.classList.contains('dark-mode')) {
-            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i> الوضع النهاري';
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
         } else {
-            darkModeToggle.innerHTML = '<i class="fas fa-adjust"></i> الوضع الليلي ';
+            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
         }
     });
 
-
-    // Daily Quote Functionality
     const quotes = [
-        { text: "العلم هو النور الذي يضيء دروب الحياة، فلا تدع ظلمة الجهل تخيم على مستقبلك." },
-        { text: "كلما تعلمت أكثر، كلما أدركت كم هو واسع بحر المعرفة، فاستمر في طلب العلم ولا تتوقف."  },
-        { text: "التعليم هو مفتاح النجاح، فاجعل من نفسك مفتاحًا يفتح لك أبواب المستقبل."  },
-        { text: "العقل كالشجرة، ينمو بالعلم والمعرفة، فاسقهما بجد واجتهاد لتنعم بثمار النجاح."  },
-        { text: "لا تيأس من التعلم، فكل خطوة تخطوها نحو المعرفة هي خطوة نحو مستقبل أفضل."  }
+        "التعلم مغامرة ممتعة، فهيا نستكشف معًا!",
+        "كل يوم هو فرصة جديدة لتعلم شيء رائع!",
+        "بالعلم والمعرفة، يمكنك أن تصل إلى النجوم!",
+        "كن فضوليًا دائمًا، فالفضول هو مفتاح الإبداع!",
+        "التعلم يجعل عقلك يتألق كالنجوم في السماء!"
     ];
 
     const quoteText = document.getElementById('quote-text');
     function displayRandomQuote() {
         const randomIndex = Math.floor(Math.random() * quotes.length);
-        const randomQuote = quotes[randomIndex];
-        quoteText.textContent = randomQuote.text;
-        //quoteAuthor.textContent = `- ${randomQuote.author}`; // If you want to display author, uncomment this line and add authors to your quotes array
+        quoteText.textContent = quotes[randomIndex];
     }
 
-    // Display a new quote when the page loads
     displayRandomQuote();
-
-    // Optional: Change the quote daily
-    setInterval(displayRandomQuote, 86400000); // 86400000 milliseconds = 24 hours 
+    setInterval(displayRandomQuote, 86400000);
 </script>
 
 </body>

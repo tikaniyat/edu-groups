@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>توثيق المجموعات التعليمية على فيسبوك</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f9;
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8f9fa; 
             color: #333;
             margin: 0;
             padding: 0;
+            transition: background-color 0.3s ease; 
         }
 
         header {
-            background-color: #4267B2;
+            background-color: #007bff;
             color: #fff;
             padding: 1.5em 0;
             text-align: center;
@@ -28,6 +29,7 @@
         header h1 {
             font-weight: bold;
             letter-spacing: 1px;
+            font-size: 2.5em;
         }
 
         .container {
@@ -37,15 +39,16 @@
             text-align: center;
         }
 
+        /* Improved category style for better UX */
         .category {
             background-color: #fff;
             margin: 1em 0;
-            padding: 1em;
-            border-radius: 8px;
+            padding: 1.5em; /* More padding for spacing */
+            border-radius: 15px; 
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
             font-weight: bold;
-            font-size: 1.5em;
+            font-size: 1.8em; 
             letter-spacing: 0.5px;
             display: flex;
             justify-content: space-between;
@@ -53,21 +56,29 @@
             direction: rtl;
             width: 100%;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: none; /* Remove default border */
         }
 
         .category.populated {
-            background-color: #0059ff;
+            background-color: #007bff; /* Use a brighter blue */
             color: #fff;
         }
 
         .category:hover {
             transform: translateY(-5px);
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            background-color: #e9ecef; /* Subtle background change on hover */
         }
 
         .category i {
             margin-left: 10px;
+            transition: transform 0.3s; /* Add transition for smooth rotation */
         }
+
+        .category.active i { /* Rotate the arrow when category is open */
+            transform: rotate(180deg);
+        }
+
 
         .tools {
             display: none;
@@ -83,13 +94,14 @@
             padding: 2em;
             margin: 1em;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-radius: 8px;
+            border-radius: 15px; 
             transition: transform 0.3s, box-shadow 0.3s;
             text-align: center;
             font-weight: bold;
             max-width: 300px;
             width: 100%;
-            position: relative; /* To position the dot */
+            position: relative;
+            overflow: hidden; 
         }
 
         .tool-card:hover {
@@ -99,140 +111,123 @@
 
         .tool-card h3 {
             margin-top: 0;
-            font-size: 1.5em;
+            font-size: 1.8em; 
             font-weight: bold;
-            color: #4267B2;
+            color: #007bff; 
+            transition: color 0.3s ease;
         }
 
         .tool-card p {
             margin: 1em 0;
-            font-size: 1em;
+            font-size: 1.2em; 
             line-height: 1.5;
         }
 
         .buttons {
             width: 100%;
+            margin-top: 1.5em; 
         }
 
         .buttons .btn {
             width: 100%;
             font-weight: bold;
-            padding: 0.75em 1.5em;
+            padding: 0.8em 1.8em; /* Adjusted padding for larger buttons */
             margin: 0.5em 0;
             border-radius: 8px;
             transition: background-color 0.3s, box-shadow 0.3s;
+            background-color: #28a745; 
+            color: white;
+            border: none;
         }
 
-        .buttons .btn-success:hover {
-            background-color: #28a745cc;
+        .buttons .btn:hover {
+            background-color: #218838;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .instructions {
-            background-color: #e9ecef;
-            padding: 2em;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 2em;
-            text-align: right;
-            font-size: 1.2em;
-        }
-
-        .instructions h2 {
-            margin-bottom: 1em;
-            color: #4267B2;
-        }
-
-        .instructions ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .instructions ul li {
-            padding: 0.5em 0;
-        }
-
-        .date-time {
-            text-align: center;
-            margin-bottom: 2em;
-            font-size: 1.2em;
-            font-weight: bold;
         }
 
         .greeting {
             text-align: center;
             margin-bottom: 1em;
-            font-size: 1.5em;
-            color: #0059ff;
+            font-size: 1.8em;
+            color: #007bff; 
             font-weight: bold;
+            transition: color 0.3s ease;
         }
 
         .subcategory {
-            background-color: #28a745;
+            background-color: #28a745; 
             color: #fff;
             margin: 1em 0;
-            padding: 1em;
-            border-radius: 8px;
+            padding: 1.5em; /* More padding for subcategory */
+            border-radius: 15px;
             cursor: pointer;
             transition: transform 0.3s, background-color 0.3s;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             font-weight: bold;
-            font-size: 1.3em;
+            font-size: 1.5em; /* Larger font size for subcategory */
             letter-spacing: 0.5px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             direction: rtl;
             width: 100%;
+            border: none; /* Remove default border */
         }
 
         .subcategory:hover {
             transform: scale(1.02);
-            background-color: #218838;
+            background-color: #218838; 
+        }
+        .subcategory i {
+            margin-left: 10px;
+            transition: transform 0.3s; 
         }
 
+        .subcategory.active i {
+            transform: rotate(180deg);
+        }
         /* Dark mode styles */
         body.dark-mode {
-            background-color: #1a1a1a;
-            color: #f0f0f0;
+            background-color: #343a40; 
+            color: #f8f9fa;
         }
 
         body.dark-mode header {
-            background-color: #2c3e50;
+            background-color: #212529;
         }
-
         body.dark-mode .category {
-            background-color: #444;
-            color: #f0f0f0;
+            background-color: #495057;
+            color: #f8f9fa;
         }
-
         body.dark-mode .category.populated {
-            background-color: #3498db;
+            background-color: #ffc107;
         }
 
         body.dark-mode .subcategory {
-            background-color: #218838;
+            background-color: #17a2b8; /* Teal for subcategory in dark mode */
         }
+        body.dark-mode .subcategory:hover {
+            background-color: #138496; 
+        }
+
 
         body.dark-mode .tool-card {
-            background-color: #333;
-            color: #f0f0f0;
+            background-color: #495057;
+            color: #f8f9fa;
         }
-
         /* Use a more obvious color for h3 in dark mode */
         body.dark-mode .tool-card h3,
         body.dark-mode .instructions h2 {
-            color: #f0d362; 
+            color: #ffc107;
         }
-
         body.dark-mode .instructions {
             background-color: #2a2a2a;
-            color: #f0f0f0;
+            color: #f8f9fa;
         }
 
         /* Use a more obvious color for the greeting in dark mode */
         body.dark-mode .greeting {
-            color: #f0d362;
+            color: #ffc107;
         }
 
         /* Dark mode toggle button */
@@ -241,8 +236,8 @@
             top: 20px;
             right: 20px;
             padding: 10px 15px;
-            background-color: #ffffff;
-            color: #000000;
+            background-color: #f8f9fa;
+            color: #343a40;
             border: none;
             border-radius: 25px;
             cursor: pointer;
@@ -253,61 +248,49 @@
         }
 
         #dark-mode-toggle:hover {
-            background-color: #000000;
-            color: #ffffff;
+            background-color: #343a40;
+            color: #f8f9fa;
             box-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }
 
         body.dark-mode #dark-mode-toggle {
-            background-color: #f0f0f0;
-            color: #1a1a1a;
+            background-color: #ced4da;
+            color: #212529;
         }
 
         body.dark-mode #dark-mode-toggle:hover {
-            background-color: #ffffff;
+            background-color: #adb5bd; 
         }
 
         /* Style for the daily quote section */
         #quote-section {
-            background: linear-gradient(to right, #e0ffff, #cce0ff); /* Light blue gradient */
-            border: 2px solid #87ceeb; /* Sky blue border */
+            background: linear-gradient(to right, #e0ffff, #cce0ff); 
+            border: 2px solid #87ceeb; 
             border-radius: 10px;
             padding: 25px;
             margin-bottom: 20px;
             text-align: center;
-            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-            position: relative; /* For positioning the stars */
-            overflow: hidden; /* To ensure the animation stays within the container */
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+            position: relative; 
+            overflow: hidden;
         }
 
         body.dark-mode #quote-section {
-            background: linear-gradient(to right, #1a1a1a, #2a2a2a); /* Dark mode gradient */
-            border: 2px solid #3498db; /* Blue border for dark mode */
+            background: linear-gradient(to right, #343a40, #495057); 
+            border: 2px solid #ffc107; 
         }
 
         /* Styling for the quote text */
         #quote-text {
             font-size: 1.8em;
             font-style: italic;
-            color: #191970; /* Dark blue color */
+            color: #191970; 
             margin-bottom: 15px;
         }
 
         body.dark-mode #quote-text {
-            color: #f0d362; /* Adjust color for dark mode */
+            color: #ffc107; 
         }
-
-        /* Styling for the author */
-        #quote-author {
-            font-weight: bold;
-            color: #000080; /* Navy blue color */
-            font-size: 1.2em;
-        }
-
-        body.dark-mode #quote-author {
-            color: #f0f0f0; /* Adjust color for dark mode */
-        }
-
         /* Adding some visual effects: Stars */
         #quote-section::before {
             content: "";
@@ -316,7 +299,7 @@
             left: -5px;
             width: 20px;
             height: 20px;
-            background-color: #ffd700; /* Gold color for the star */
+            background-color: #ffd700; 
             clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
             opacity: 0.8;
             animation: sparkle 4s infinite linear;
@@ -329,7 +312,7 @@
             right: -5px;
             width: 15px;
             height: 15px;
-            background-color: #ffd700; /* Gold color for the star */
+            background-color: #ffd700; 
             clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
             opacity: 0.8;
             animation: sparkle 3s infinite linear;
@@ -341,67 +324,66 @@
             50% { transform: rotate(180deg); opacity: 0.5; }
             100% { transform: rotate(360deg); opacity: 0.8; }
         }
-
-        /* Blue dot indicator */
-        .blue-dot {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 10px;
-            height: 10px;
-            background-color: blue;
-            border-radius: 50%;
-            display: none; /* Hidden by default */
+        /* Search Bar styles */
+        #search-bar {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 20px; 
+            box-sizing: border-box;
+            font-size: 16px;
         }
 
-        .tool-card[data-has-update="true"] .blue-dot {
-            display: block; /* Show dot if data-has-update is true */
+        #search-bar:focus {
+            outline: none; 
+            border-color: #007bff; /* Highlight border on focus */
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add a light blue shadow */
         }
     </style>
-</head>
+</head> 
 <body>
-
 <header>
     <h1>توثيق المجموعات التعليمية على فيسبوك</h1>
 </header>
-
 <button id="dark-mode-toggle">
     <i class="fas fa-adjust"></i> الوضع الليلي 
 </button>
 
 <div class="container">
     <div class="greeting">مرحبا بكم في موقعنا!</div>
+    <!-- Search Bar -->
+    <input type="text" id="search-bar" placeholder="ابحث عن..."> 
 
     <!-- Daily Quote Section -->
     <div id="quote-section">
         <div id="quote-text"></div>
         <div id="quote-author"></div>
     </div>
-    
     <div class="instructions">
         <h2>التعليمات</h2>
         <p>يوفر هذا الموقع مجموعة واسعة من الموارد التعليمية للطلاب والمعلمين من السنة الأولى إلى السنة السادسة، بما في ذلك:</p>
-        <ul>
-            <li><b>المجموعات التعليمية على فيسبوك:</b> انضم إلى مجموعات مخصصة لكل سنة دراسية للتواصل مع المعلمين والطلاب الآخرين.</li>
-            <li><b>التمارين:</b> تمارين و أنشطة لكل مادة ولكل سنة دراسية لمساعدة الطلاب على تحسين مهاراتهم.</li>
-            <li><b>القصص:</b> مجموعة متنوعة من القصص باللغات العربية والفرنسية والإنجليزية للمساعدة في تحسين مهارات القراءة والكتابة.</li>
-            <li><b>مدونة القسم: </b> تحتوي على مقالات ودروس إضافية  لكل سنة دراسية.</li>
-            <li><b>البرنامج الدراسي: </b> يوضح  المواضيع التي سيتم  تدريسها خلال  السنة الدراسية  لكل مادة.</li>
-            <li><b>الكتب المدرسية: </b>  روابط لتحميل كتب  التلميذ وكتب  المعلم لكل  المواد.</li>
-            <li><b>الكتب الموازية: </b>  مجموعة من الكتب الإضافية  لتقوية  مهارات التلاميذ.</li>
-            <li><b>الملخصات: </b>  ملخصات  للدروس  لكل  المواد  وكل  السنة  الدراسية.</li>
-            <li><b>الامتحانات: </b> نماذج  امتحانات  سابقة  ومراجعات  لكل  المواد  وكل  السنة  الدراسية.</li>
-            <li><b>مناظرات السنة السادسة: </b>  مجموعة  من  مناظرات  السنة  السادسة  في  مختلف  المواد.</li>
-            <li><b>كراس العطلة: </b>  مجموعة من  كراريس  العطلة  لكل  المستويات.</li>
-        </ul>
+      
+            <b>المجموعات التعليمية على فيسبوك:</b> انضم إلى مجموعات مخصصة لكل سنة دراسية للتواصل مع المعلمين والطلاب الآخرين.<br>
+            <b>التمارين:</b> تمارين و أنشطة لكل مادة ولكل سنة دراسية لمساعدة الطلاب على تحسين مهاراتهم.<br>
+            <b>القصص:</b> مجموعة متنوعة من القصص باللغات العربية والفرنسية والإنجليزية للمساعدة في تحسين مهارات القراءة والكتابة.<br>
+            <b>مدونة القسم: </b> تحتوي على مقالات ودروس إضافية  لكل سنة دراسية.<br>
+            <b>البرنامج الدراسي: </b> يوضح  المواضيع التي سيتم  تدريسها خلال  السنة الدراسية  لكل مادة.<br>
+            <b>الكتب المدرسية: </b>  روابط لتحميل كتب  التلميذ وكتب  المعلم لكل  المواد.<br>
+            <b>الكتب الموازية: </b>  مجموعة من الكتب الإضافية  لتقوية  مهارات التلاميذ.<br>
+            <b>الملخصات: </b>  ملخصات  للدروس  لكل  المواد  وكل  السنة  الدراسية.<br>
+            <b>الامتحانات: </b> نماذج  امتحانات  سابقة  ومراجعات  لكل  المواد  وكل  السنة  الدراسية.<br>
+            <b>مناظرات السنة السادسة: </b>  مجموعة  من  مناظرات  السنة  السادسة  في  مختلف  المواد.<br>
+            <b>كراس العطلة: </b>  مجموعة من  كراريس  العطلة  لكل  المستويات.<br>
+      
         <p>استخدم  الأزرار  التفاعلية  في  الأسفل  للوصول  إلى  الموارد  التي  تريدها.</p>
     </div>
 
-    <!-- Educational groups section -->
-    <div class="category populated" onclick="toggleTools('educational-groups')">
+     <!-- Educational groups section -->
+     <div class="category" onclick="toggleTools('educational-groups')">
         <span>المجموعات التعليمية</span>
-        <i class="fas fa-chevron-down fa-lg"></i>
-        <span class="badge badge-primary" id="educational-groups-count"></span>
+        <i class="fas fa-chevron-down fa-lg"></i> 
     </div>
     <div id="educational-groups" class="tools">
         <div class="tool-card" data-has-update="false"> 
@@ -409,7 +391,7 @@
             <h3>السنة الأولى</h3>
             <p>روابط للمجموعات التعليمية للسنة الأولى</p>
             <div class="buttons">
-                <a href="https://www.facebook.com/groups/1064690737729017/" class="btn btn-success">زيارة المجموعة</a>
+                <a href="https://www.facebook.com/groups/1064690737729017/" class="btn btn-success">زيارة المجموعة</a> 
             </div>
         </div>
         <div class="tool-card" data-has-update="false"> 
@@ -433,7 +415,7 @@
             <h3>السنة الرابعة</h3>
             <p>روابط للمجموعات التعليمية للسنة الرابعة</p>
             <div class="buttons">
-                <a href="https://www.facebook.com/groups/291126383090682/" class="btn btn-success">زيارة المجموعة</a>
+                <a href="https://www.facebook.com/groups/291126383090682/" class="btn btn-success">زيارة المجموعة</a> 
             </div>
         </div>
         <div class="tool-card" data-has-update="false"> 
@@ -455,7 +437,7 @@
     </div>
     
     <!-- Exercises section -->
-    <div class="category populated" onclick="toggleTools('exercises')">
+    <div class="category" onclick="toggleTools('exercises')">
         <span>تمارين</span>
         <i class="fas fa-chevron-down fa-lg"></i>
         <span class="badge badge-primary" id="exercises-count"></span>
@@ -466,7 +448,7 @@
             <h3>تمارين السنة الأولى</h3>
             <p>روابط للتمارين للسنة الأولى</p>
             <div class="buttons">
-                <a href="https://drive.google.com/drive/folders/1OvqSaDQcYFdGeoQ9ut_OnJLkPvExbQcf?usp=sharing" class="btn btn-success">القراءة</a>
+                <a href="https://drive.google.com/drive/folders/1OvqSaDQcYFdGeoQ9ut_OnJLkPvExbQcf?usp=sharing" class="btn btn-success">القراءة</a> 
             </div>
         </div>
         <div class="tool-card" data-has-update="false">
@@ -506,20 +488,19 @@
             <h3>تمارين السنة السادسة</h3>
             <p>روابط للتمارين للسنة السادسة</p>
             <div class="buttons">
-                <a href="https://drive.google.com/drive/folders/1yE7ica4xtLWqu39zaFFSnxfE0toSiVCQ?usp=sharing" class="btn btn-success">القراءة</a>
+                <a href="https://drive.google.com/drive/folders/1yE7ica4xtLWqu39zaFFSnxfE0toSiVCQ?usp=sharing" class="btn btn-success">القراءة</a> 
             </div>
         </div>
     </div>
     <!-- Stories section -->
-    <div class="category populated" onclick="toggleTools('stories')">
+    <div class="category" onclick="toggleTools('stories')">
         <span>قصص للمطالعة</span>
-        <i class="fas fa-chevron-down fa-lg"></i>
-        <span class="badge badge-primary" id="stories-count"></span>
+        <i class="fas fa-chevron-down fa-lg"></i> 
     </div>
     <div id="stories" class="tools">
         <div class="subcategory" onclick="toggleTools('arabic-stories')">
             <span>القصص العربية</span>
-            <i class="fas fa-chevron-down fa-lg"></i>
+            <i class="fas fa-chevron-down fa-lg"></i> 
         </div>
         <div id="arabic-stories" class="tools">
             <div class="tool-card" data-has-update="false">
@@ -547,10 +528,9 @@
                 </div>
             </div>
         </div>
-        
         <div class="subcategory" onclick="toggleTools('french-stories')">
             <span>القصص الفرنسية</span>
-            <i class="fas fa-chevron-down fa-lg"></i>
+            <i class="fas fa-chevron-down fa-lg"></i> 
         </div>
         <div id="french-stories" class="tools">
             <div class="tool-card" data-has-update="false">
@@ -594,13 +574,11 @@
                 </div>
             </div>
         </div>
-        
         <div class="subcategory" onclick="toggleTools('english-stories')">
             <span>القصص الإنجليزية</span>
             <i class="fas fa-chevron-down fa-lg"></i>
         </div>
         <div id="english-stories" class="tools">
-            <!-- يمكن إضافة القصص الإنجليزية هنا في المستقبل -->
             <div class="tool-card" data-has-update="false">
                 <div class="blue-dot"></div> 
                 <h3>the ant and the dove</h3>
@@ -614,7 +592,7 @@
                 <h3>the milkmaid</h3>
                 <p>السنة السادسة</p>
                 <div class="buttons">
-                    <a href="https://drive.google.com/file/d/1EQqekB22XjCsgLr-Als91dKE-k2AMLe-/view?usp=sharing" class="btn btn-success">قراءة القصة</a>
+                    <a href="https://drive.google.com/file/d/1EQqekB22XjCsgLr-Als91dKE-k2AMLe-/view?usp=sharing" class="btn btn-success">قراءة القصة</a> 
                 </div>
             </div>
             <div class="tool-card" data-has-update="false">
@@ -630,7 +608,7 @@
                 <h3>the thirsty crow</h3>
                 <p>السنة السادسة</p>
                 <div class="buttons">
-                    <a href="https://drive.google.com/file/d/1PvfgK_cFCSj5zGxGhfrHno3a3vt3y4Y-/view?usp=sharing" class="btn btn-success">قراءة القصة</a>
+                    <a href="https://drive.google.com/file/d/1PvfgK_cFCSj5zGxGhfrHno3a3vt3y4Y-/view?usp=sharing" class="btn btn-success">قراءة القصة</a> 
                 </div>
             </div>
             <div class="tool-card" data-has-update="false">
@@ -638,7 +616,7 @@
                 <h3>the fox and the stork</h3>
                 <p>السنة السادسة</p>
                 <div class="buttons">
-                    <a href="https://drive.google.com/file/d/1_Bbvpv7O0vIyafx2RVj1J5DcqfTEl-F6/view?usp=sharingg" class="btn btn-success">قراءة القصة</a>
+                    <a href="https://drive.google.com/file/d/1_Bbvpv7O0vIyafx2RVj1J5DcqfTEl-F6/view?usp=sharingg" class="btn btn-success">قراءة القصة</a> 
                 </div>
             </div>
             <div class="tool-card" data-has-update="false">
@@ -654,7 +632,7 @@
                 <h3>the ant and the grasshopper</h3>
                 <p>السنة السادسة</p>
                 <div class="buttons">
-                    <a href="https://drive.google.com/file/d/1lgTtDsXqwoRgmy2CzDJEw5lfySpjpCqV/view?usp=sharing" class="btn btn-success">قراءة القصة</a>
+                    <a href="https://drive.google.com/file/d/1lgTtDsXqwoRgmy2CzDJEw5lfySpjpCqV/view?usp=sharing" class="btn btn-success">قراءة القصة</a> 
                 </div>
             </div>
             <div class="tool-card" data-has-update="false">
@@ -685,10 +663,9 @@
     </div>
     
     <!-- Blog section -->
-    <div class="category populated" onclick="toggleTools('blogs')">
+    <div class="category" onclick="toggleTools('blogs')">
         <span>مدونة القسم</span>
-        <i class="fas fa-chevron-down fa-lg"></i>
-        <span class="badge badge-primary" id="blogs-count"></span>
+        <i class="fas fa-chevron-down fa-lg"></i> 
     </div>
     <div id="blogs" class="tools">
         <div class="tool-card" data-has-update="false">
@@ -696,7 +673,7 @@
             <h3>مدونة السنة الأولى</h3>
             <p>رابط لمدونة السنة الأولى</p>
             <div class="buttons">
-                <a href="https://drive.google.com/drive/folders/1uJV_WhkpcHjFvKmIG8snOnJOpyO335fd?usp=sharing" class="btn btn-success">قراءة</a>
+                <a href="https://drive.google.com/drive/folders/1uJV_WhkpcHjFvKmIG8snOnJOpyO335fd?usp=sharing" class="btn btn-success">قراءة</a> 
             </div>
         </div>
         <div class="tool-card" data-has-update="false">
@@ -728,7 +705,7 @@
             <h3>مدونة السنة الخامسة</h3>
             <p>رابط لمدونة السنة الخامسة</p>
             <div class="buttons">
-                <a href="https://drive.google.com/drive/folders/1GUOBEZuRvLBOexzhvKBx3Jd7Riv3eYwR?usp=sharing" class="btn btn-success">قراءة</a>
+                <a href="https://drive.google.com/drive/folders/1GUOBEZuRvLBOexzhvKBx3Jd7Riv3eYwR?usp=sharing" class="btn btn-success">قراءة</a> 
             </div>
         </div>
         <div class="tool-card" data-has-update="true">
@@ -740,12 +717,10 @@
             </div>
         </div>
     </div>
-    
     <!-- Curriculum section -->
-    <div class="category populated" onclick="toggleTools('curriculum')">
+    <div class="category" onclick="toggleTools('curriculum')">
         <span>البرنامج الدراسي</span>
-        <i class="fas fa-chevron-down fa-lg"></i>
-        <span class="badge badge-primary" id="curriculum-count"></span>
+        <i class="fas fa-chevron-down fa-lg"></i> 
     </div>
     <div id="curriculum" class="tools">
         <div class="tool-card" data-has-update="false">
@@ -775,7 +750,7 @@
         <div class="tool-card" data-has-update="false">
             <div class="blue-dot"></div> 
             <h3>البرنامج الدراسي للسنة الرابعة</h3>
-            <p>البرنامج الدراسي للسنة الرابعة           </p>
+            <p>البرنامج الدراسي للسنة الرابعة</p>
             <div class="buttons">
                 <a href="https://drive.google.com/drive/folders/1BOFHhEhqJ6DvNtl_Tn9cdWqjVxstP76H?usp=sharing" class="btn btn-success">قراءة</a> 
             </div>
@@ -785,7 +760,7 @@
             <h3>البرنامج الدراسي للسنة الخامسة</h3>
             <p>البرنامج الدراسي للسنة الخامسة</p>
             <div class="buttons">
-                <a href="https://drive.google.com/drive/folders/10pXLW4Hd2n2jDxLFgvTlhKEtkMAfMNC2?usp=sharing" class="btn btn-success">قراءة</a> 
+                <a href="https://drive.google.com/drive/folders/10pXLW4Hd2n2jDxLFgvTlhKEtkMAfMNC2?usp=sharing" class="btn btn-success">قراءة</a>
             </div>
         </div>
         <div class="tool-card" data-has-update="true">
@@ -797,17 +772,15 @@
             </div>
         </div>
     </div>
-    
-    <!-- Textbooks section -->
-    <div class="category populated" onclick="toggleTools('textbooks')">
+   <!-- Textbooks section -->
+   <div class="category" onclick="toggleTools('textbooks')">
         <span>الكتب المدرسية</span>
-        <i class="fas fa-chevron-down fa-lg"></i>
-        <span class="badge badge-primary" id="textbooks-count"></span>
+        <i class="fas fa-chevron-down fa-lg"></i> 
     </div>
     <div id="textbooks" class="tools">
         <div class="subcategory" onclick="toggleTools('teacher-books')">
             <span>كتب المعلم</span>
-            <i class="fas fa-chevron-down fa-lg"></i>
+            <i class="fas fa-chevron-down fa-lg"></i> 
         </div>
         <div id="teacher-books" class="tools">
             <div class="tool-card" data-has-update="false">
@@ -815,7 +788,7 @@
                 <h3>كتب المعلم للسنة الأولى</h3>
                 <p>كتب المعلم للسنة الأولى</p>
                 <div class="buttons">
-                    <a href="https://drive.google.com/drive/folders/1KcmjC9sSpwROWTGRs1LJXHXNmvpy5IRK?usp=sharing" class="btn btn-success">قراءة</a> 
+                    <a href="https://drive.google.com/drive/folders/1KcmjC9sSpwROWTGRs1LJXHXNmvpy5IRK?usp=sharing" class="btn btn-success">قراءة</a>
                 </div>
             </div>
             <div class="tool-card" data-has-update="false">
@@ -823,7 +796,7 @@
                 <h3>كتب المعلم للسنة الثانية</h3>
                 <p>كتب المعلم للسنة الثانية</p>
                 <div class="buttons">
-                    <a href="https://drive.google.com/drive/folders/1In6FE5eeiRX2NIdlGJMZkp67HU8WJVxa?usp=sharing" class="btn btn-success">قراءة</a> 
+                    <a href="https://drive.google.com/drive/folders/1In6FE5eeiRX2NIdlGJMZkp67HU8WJVxa?usp=sharing" class="btn btn-success">قراءة</a>
                 </div>
             </div>
             <div class="tool-card" data-has-update="false">
@@ -847,7 +820,7 @@
                 <h3>كتب المعلم للسنة الخامسة</h3>
                 <p>كتب المعلم للسنة الخامسة</p>
                 <div class="buttons">
-                    <a href="https://drive.google.com/drive/folders/13C1IkFG_kWB4Tv77WYSBnjaE79LsWRwU?usp=sharing" class="btn btn-success">قراءة</a> 
+                    <a href="https://drive.google.com/drive/folders/13C1IkFG_kWB4Tv77WYSBnjaE79LsWRwU?usp=sharing" class="btn btn-success">قراءة</a>
                 </div>
             </div>
             <div class="tool-card" data-has-update="true">
@@ -855,11 +828,10 @@
                 <h3>كتب المعلم للسنة السادسة</h3>
                 <p>كتب المعلم للسنة السادسة</p>
                 <div class="buttons">
-                    <a href="https://drive.google.com/drive/folders/1lOB6Wge5CePpB0QI7nTwW3VOYvg_XGfs?usp=sharing" class="btn btn-success">قراءة</a> 
+                    <a href="https://drive.google.com/drive/folders/1lOB6Wge5CePpB0QI7nTwW3VOYvg_XGfs?usp=sharing" class="btn btn-success">قراءة</a>
                 </div>
             </div>
         </div>
-    
         <div class="subcategory" onclick="toggleTools('student-books')">
             <span>كتب التلميذ</span>
             <i class="fas fa-chevron-down fa-lg"></i>
@@ -902,7 +874,7 @@
                 <h3>كتب التلميذ للسنة الخامسة</h3>
                 <p>كتب التلميذ للسنة الخامسة</p>
                 <div class="buttons">
-                    <a href="https://drive.google.com/drive/folders/1IMRl9Aesm8wwh3g9FHRP_lkkCTY3xui_?usp=sharing" class="btn btn-success">قراءة</a> 
+                    <a href="https://drive.google.com/drive/folders/1IMRl9Aesm8wwh3g9FHRP_lkkCTY3xui_?usp=sharing" class="btn btn-success">قراءة</a>
                 </div>
             </div>
             <div class="tool-card" data-has-update="true">
@@ -910,17 +882,16 @@
                 <h3>كتب التلميذ للسنة السادسة</h3>
                 <p>كتب التلميذ للسنة السادسة</p>
                 <div class="buttons">
-                    <a href="https://drive.google.com/drive/folders/1zKRLg1FLurWN948qKeC8Hx1qaR6OQx1V?usp=sharing" class="btn btn-success">قراءة</a> 
+                    <a href="https://drive.google.com/drive/folders/1zKRLg1FLurWN948qKeC8Hx1qaR6OQx1V?usp=sharing" class="btn btn-success">قراءة</a>
                 </div>
             </div>
         </div>
     </div>
-    
+
      <!-- Parallel Books section -->
-    <div class="category populated" onclick="toggleTools('parallel-books')">
+     <div class="category" onclick="toggleTools('parallel-books')">
         <span>الكتب الموازية</span>
-        <i class="fas fa-chevron-down fa-lg"></i>
-        <span class="badge badge-primary" id="parallel-books-count"></span>
+        <i class="fas fa-chevron-down fa-lg"></i> 
     </div>
     <div id="parallel-books" class="tools">
         <div class="tool-card" data-has-update="false">
@@ -936,7 +907,7 @@
             <h3>الكتب الموازية للسنة الثانية</h3>
             <p>روابط لكتب السنة الثانية</p>
             <div class="buttons">
-                <a href="https://drive.google.com/drive/folders/1Hv6VAPjfRbRx-kcSjk0WYZJ-MVAyQbq0?usp=sharing" class="btn btn-success">قراءة</a> 
+                <a href="https://drive.google.com/drive/folders/1Hv6VAPjfRbRx-kcSjk0WYZJ-MVAyQbq0?usp=sharing" class="btn btn-success">قراءة</a>
             </div>
         </div>
         <div class="tool-card" data-has-update="true">
@@ -944,7 +915,7 @@
             <h3>الكتب الموازية للسنة الثالثة</h3>
             <p>روابط لكتب السنة الثالثة</p>
             <div class="buttons">
-                <a href="https://drive.google.com/drive/folders/1vWy8evCzEjHBvHGuUchn7sEfHrSF94Xw?usp=sharing" class="btn btn-success">قراءة</a> 
+                <a href="https://drive.google.com/drive/folders/1vWy8evCzEjHBvHGuUchn7sEfHrSF94Xw?usp=sharing" class="btn btn-success">قراءة</a>
             </div>
         </div>
         <div class="tool-card" data-has-update="false">
@@ -952,7 +923,7 @@
             <h3>الكتب الموازية للسنة الرابعة</h3>
             <p>روابط لكتب السنة الرابعة</p>
             <div class="buttons">
-                <a href="https://drive.google.com/drive/folders/1pgNu0VmzssQAor72jUO9nDZY2KgTlxdp?usp=sharing" class="btn btn-success">قراءة</a> 
+                <a href="https://drive.google.com/drive/folders/1pgNu0VmzssQAor72jUO9nDZY2KgTlxdp?usp=sharing" class="btn btn-success">قراءة</a>
             </div>
         </div>
         <div class="tool-card" data-has-update="false">
@@ -968,16 +939,15 @@
             <h3>الكتب الموازية للسنة السادسة</h3>
             <p>روابط لكتب السنة السادسة</p>
             <div class="buttons">
-                <a href="https://drive.google.com/drive/folders/1SQ9oQmZKywL1dlmz9qZNbl8ah4l4fz38?usp=sharing" class="btn btn-success">قراءة</a> 
+                <a href="https://drive.google.com/drive/folders/1SQ9oQmZKywL1dlmz9qZNbl8ah4l4fz38?usp=sharing" class="btn btn-success">قراءة</a>
             </div>
         </div>
     </div>
-    
-    <!-- Summaries section -->
-    <div class="category populated" onclick="toggleTools('summaries')">
+  
+   <!-- Summaries section -->
+   <div class="category" onclick="toggleTools('summaries')">
         <span>الملخصات</span>
         <i class="fas fa-chevron-down fa-lg"></i>
-        <span class="badge badge-primary" id="summaries-count"></span>
     </div>
     <div id="summaries" class="tools">
         <div class="tool-card" data-has-update="false">
@@ -985,7 +955,7 @@
             <h3>ملخصات السنة الأولى</h3>
             <p>روابط لملخصات السنة الأولى</p>
             <div class="buttons">
-                <a href="https://drive.google.com/drive/folders/1UajLTqVv7bZPJ6tJHZCN6acAaX9rF3GV?usp=sharing" class="btn btn-success">قراءة</a> 
+                <a href="https://drive.google.com/drive/folders/1UajLTqVv7bZPJ6tJHZCN6acAaX9rF3GV?usp=sharing" class="btn btn-success">قراءة</a>
             </div>
         </div>
         <div class="tool-card" data-has-update="false">
@@ -993,7 +963,7 @@
             <h3>ملخصات السنة الثانية</h3>
             <p>روابط لملخصات السنة الثانية</p>
             <div class="buttons">
-                <a href="https://drive.google.com/drive/folders/1r6aDJIXfZAJvMzPDO9AbH7KnJ8KMW0x_?usp=sharing" class="btn btn-success">قراءة</a> 
+                <a href="https://drive.google.com/drive/folders/1r6aDJIXfZAJvMzPDO9AbH7KnJ8KMW0x_?usp=sharing" class="btn btn-success">قراءة</a>
             </div>
         </div>
         <div class="tool-card" data-has-update="false">
@@ -1017,7 +987,7 @@
             <h3>ملخصات السنة الخامسة</h3>
             <p>روابط لملخصات السنة الخامسة</p>
             <div class="buttons">
-                <a href="https://drive.google.com/drive/folders/1bTIYNbs36y1WtvV-V6pqjMiCGVNX-Ar0?usp=sharing" class="btn btn-success">قراءة</a> 
+                <a href="https://drive.google.com/drive/folders/1bTIYNbs36y1WtvV-V6pqjMiCGVNX-Ar0?usp=sharing" class="btn btn-success">قراءة</a>
             </div>
         </div>
         <div class="tool-card" data-has-update="false">
@@ -1029,12 +999,11 @@
             </div>
         </div>
     </div>
-    
+ 
     <!-- Exams section -->
-    <div class="category populated" onclick="toggleTools('exams')">
+    <div class="category" onclick="toggleTools('exams')">
         <span>الامتحانات</span>
-        <i class="fas fa-chevron-down fa-lg"></i>
-        <span class="badge badge-primary" id="exams-count"></span>
+        <i class="fas fa-chevron-down fa-lg"></i> 
     </div>
     <div id="exams" class="tools">
         <div class="tool-card" data-has-update="false">
@@ -1050,7 +1019,7 @@
             <h3>امتحانات السنة الثانية</h3>
             <p>روابط لامتحانات السنة الثانية</p>
             <div class="buttons">
-                <a href="https://drive.google.com/drive/folders/1LUuv0-7mRCFbODt_5cf6Ogq4O_qvtS0s?usp=sharing" class="btn btn-success">قراءة</a> 
+                <a href="https://drive.google.com/drive/folders/1LUuv0-7mRCFbODt_5cf6Ogq4O_qvtS0s?usp=sharing" class="btn btn-success">قراءة</a>
             </div>
         </div>
         <div class="tool-card" data-has-update="false">
@@ -1058,7 +1027,7 @@
             <h3>امتحانات السنة الثالثة</h3>
             <p>روابط لامتحانات السنة الثالثة</p>
             <div class="buttons">
-                <a href="https://drive.google.com/drive/folders/1QkkafNULHqukYEM4EEx8oSPPYsVuf2e1?usp=sharing" class="btn btn-success">قراءة</a> 
+                <a href="https://drive.google.com/drive/folders/1QkkafNULHqukYEM4EEx8oSPPYsVuf2e1?usp=sharing" class="btn btn-success">قراءة</a>
             </div>
         </div>
         <div class="tool-card" data-has-update="false">
@@ -1074,7 +1043,7 @@
             <h3>امتحانات السنة الخامسة</h3>
             <p>روابط لامتحانات السنة الخامسة</p>
             <div class="buttons">
-                <a href="https://drive.google.com/drive/folders/1Kzm8fXAnyKzxf8U_jYTtLmuhx6TCp0Y6?usp=sharing" class="btn btn-success">قراءة</a> 
+                <a href="https://drive.google.com/drive/folders/1Kzm8fXAnyKzxf8U_jYTtLmuhx6TCp0Y6?usp=sharing" class="btn btn-success">قراءة</a>
             </div>
         </div>
         <div class="tool-card" data-has-update="false">
@@ -1082,16 +1051,15 @@
             <h3>امتحانات السنة السادسة</h3>
             <p>روابط لامتحانات السنة السادسة</p>
             <div class="buttons">
-                <a href="https://drive.google.com/drive/folders/1r8BtAYdh1i3BFtzOqF1YkKB73sv3cc1p?usp=sharing" class="btn btn-success">قراءة</a> 
+                <a href="https://drive.google.com/drive/folders/1r8BtAYdh1i3BFtzOqF1YkKB73sv3cc1p?usp=sharing" class="btn btn-success">قراءة</a>
             </div>
         </div>
     </div>
-    
-    <!-- Sixth Grade Debates Section -->
-    <div class="category populated" onclick="toggleTools('sixth-grade-debates')">
+
+   <!-- Sixth Grade Debates Section -->
+   <div class="category" onclick="toggleTools('sixth-grade-debates')">
         <span>مناظرات السنة السادسة</span>
-        <i class="fas fa-chevron-down fa-lg"></i>
-        <span class="badge badge-primary" id="sixth-grade-debates-count"></span>
+        <i class="fas fa-chevron-down fa-lg"></i> 
     </div>
     <div id="sixth-grade-debates" class="tools">
         <div class="tool-card" data-has-update="true">
@@ -1107,7 +1075,7 @@
             <h3>الإيقاظ العلمي</h3>
             <p>مادة الإيقاظ العلمي</p>
             <div class="buttons">
-                <a href="https://drive.google.com/drive/folders/1hd4k4UgepmW16snLe3CrNcJPw4BKrbkL?usp=sharing" class="btn btn-success">قراءة</a> 
+                <a href="https://drive.google.com/drive/folders/1hd4k4UgepmW16snLe3CrNcJPw4BKrbkL?usp=sharing" class="btn btn-success">قراءة</a>
             </div>
         </div>
         <div class="tool-card" data-has-update="true">
@@ -1137,10 +1105,9 @@
     </div>
     
     <!-- Reading Notebooks section -->
-    <div class="category populated" onclick="toggleTools('reading-notebooks')">
+    <div class="category" onclick="toggleTools('reading-notebooks')">
         <span>كراس العطلة</span>
-        <i class="fas fa-chevron-down fa-lg"></i>
-        <span class="badge badge-primary" id="reading-notebooks-count"></span>
+        <i class="fas fa-chevron-down fa-lg"></i> 
     </div>
     <div id="reading-notebooks" class="tools">
         <div class="tool-card" data-has-update="true">
@@ -1194,11 +1161,12 @@
     </div>
 
 </div>
-
 <script>
     function toggleTools(categoryId) {
         const tools = document.getElementById(categoryId);
         tools.style.display = tools.style.display === 'flex' ? 'none' : 'flex';
+        const categoryElement = document.querySelector(`[onclick="toggleTools('${categoryId}')"]`);
+        categoryElement.classList.toggle('active'); 
     }
 
     // Dark mode toggle
@@ -1214,7 +1182,6 @@
         }
     });
 
-
     // Daily Quote Functionality
     const quotes = [
         { text: "العلم هو النور الذي يضيء دروب الحياة، فلا تدع ظلمة الجهل تخيم على مستقبلك." },
@@ -1228,15 +1195,13 @@
     function displayRandomQuote() {
         const randomIndex = Math.floor(Math.random() * quotes.length);
         const randomQuote = quotes[randomIndex];
-        quoteText.textContent = randomQuote.text;
-        quoteAuthor.textContent = `- ${randomQuote.author}`;
+        quoteText.textContent = randomQuote.text; 
     }
-
     // Display a new quote when the page loads
     displayRandomQuote();
 
     // Optional: Change the quote daily
-    setInterval(displayRandomQuote, 86400000); // 86400000 milliseconds = 24 hours 
+    setInterval(displayRandomQuote, 86400000); 
 </script>
 
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
