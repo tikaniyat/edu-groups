@@ -1,304 +1,298 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>السنة الثالثة ابتدائي</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <style>
-    body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #f4f4f9;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      direction: rtl; 
-    }
-
-    body.dark-mode {
-      background-color: #1a1a1a;
-      color: #f0f0f0;
-    }
-
-    header {
-      background-color: #4267B2;
-      color: #fff;
-      padding: 1.5em 0;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      margin-bottom: 2em;
-    }
-
-    body.dark-mode header {
-      background-color: #2c3e50;
-    }
-
-    header h1 {
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 0 1em;
-      display: flex; 
-      flex-wrap: wrap; 
-      justify-content: center;
-      gap: 20px; 
-    }
-
-    .card { 
-      background-color: #fff;
-      padding: 2em;
-      border-radius: 8px;
-      font-weight: 500; 
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-      width: calc(33.333% - 13px); /* For 3 cards per row */
-      text-align: center; 
-      min-height: 150px; /* Adjusted for single-link cards */
-    }
-
-    body.dark-mode .card {
-      background-color: #333;
-      color: #f0f0f0;
-    }
-
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-
-    .card h3 {
-      color: #4267B2;
-      font-size: 1.5em;
-      margin-bottom: 1em; 
-    }
-
-    body.dark-mode .card h3 {
-      color: #f0d362;
-    }
-
-    .card .btn-success {
-      background-color: #28a745;
-      color: #fff;
-      font-weight: bold;
-      padding: 0.75em 1.5em;
-      border: none; 
-      border-radius: 8px;
-      transition: background-color 0.3s, box-shadow 0.3s;
-    }
-
-    .card .btn-success:hover {
-      background-color: #28a745cc;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    /* Dark mode toggle button */
-    #dark-mode-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      padding: 10px 15px;
-      background-color: #ffffff;
-      color: #000000;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      transition: all 0.3s ease;
-    }
-
-    #dark-mode-toggle:hover {
-      background-color: #000000;
-      color: #ffffff;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    }
-
-    body.dark-mode #dark-mode-toggle {
-      background-color: #f0f0f0;
-      color: #1a1a1a;
-    }
-
-    body.dark-mode #dark-mode-toggle:hover {
-      background-color: #ffffff;
-    }
-
-    /* Daily Quote Styles */
-    #quote-section {
-      background: linear-gradient(to right, #e0ffff, #cce0ff);
-      border: 2px solid #87ceeb;
-      border-radius: 10px;
-      padding: 25px;
-      margin-bottom: 20px;
-      text-align: center;
-      box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
-      position: relative;
-      overflow: hidden;
-    }
-
-    body.dark-mode #quote-section {
-      background: linear-gradient(to right, #1a1a1a, #2a2a2a); 
-      border: 2px solid #3498db; 
-    }
-
-    #quote-text {
-      font-size: 1.8em;
-      font-style: italic;
-      color: #191970;
-      margin-bottom: 15px;
-    }
-
-    body.dark-mode #quote-text {
-      color: #f0d362; 
-    }
-
-    #quote-author {
-      font-weight: bold;
-      color: #000080; 
-      font-size: 1.2em;
-    }
-
-    body.dark-mode #quote-author {
-      color: #f0f0f0;
-    }
-
-    #quote-section::before,
-    #quote-section::after {
-      content: "";
-      position: absolute;
-      background-color: #ffd700; 
-      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-      opacity: 0.8;
-      animation: sparkle 4s infinite linear; 
-    }
-
-    #quote-section::before {
-      top: -5px;
-      left: -5px;
-      width: 20px;
-      height: 20px;
-    }
-
-    #quote-section::after {
-      bottom: -5px;
-      right: -5px;
-      width: 15px;
-      height: 15px;
-      animation-duration: 3s; 
-    }
-
-    @keyframes sparkle {
-      0% { transform: rotate(0deg); opacity: 0.8; }
-      50% { transform: rotate(180deg); opacity: 0.5; }
-      100% { transform: rotate(360deg); opacity: 0.8; }
-    }
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السنة الأولى ابتدائي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #FF6B6B;
+            --secondary-color: #4ECDC4;
+            --text-color: #333;
+            --bold-text-color: #000;
+            --bg-color: #F7FFF7;
+            --card-bg: #fff;
+            --button-bg: #FFD93D;
+            --button-text: #333;
+            --header-bg: #6C5CE7;
+            --header-text: #fff;
+        }
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            text-align: center;
+            padding: 1em;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-bottom: 5px solid var(--secondary-color);
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .home-btn, .theme-toggle {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .home-btn:hover, .theme-toggle:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-50%) scale(1.05);
+        }
+        .home-btn {
+            left: 20px;
+        }
+        .theme-toggle {
+            right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 40px;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin: 15px;
+            padding: 25px;
+            width: calc(33.333% - 30px);
+            text-align: center;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+            border: 3px solid var(--primary-color);
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            z-index: -1;
+            filter: blur(20px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px) rotate(2deg);
+        }
+        .card:hover::before {
+            opacity: 0.3;
+        }
+        .card h3 {
+            color: var(--primary-color);
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        .card-btn {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            margin-top: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-decoration: none;
+            display: inline-block;
+        }
+        .card-btn:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.05) rotate(-2deg);
+        }
+        .dark-mode {
+            --primary-color: #FF9A8B;
+            --secondary-color: #74EBD5;
+            --text-color: #FFFFFF;
+            --bold-text-color: #FFFFFF;
+            --bg-color: #1A1A2E;
+            --card-bg: #16213E;
+            --button-bg: #FFD93D;
+            --button-text: #333;
+            --header-bg: #6C5CE7;
+            --header-text: #fff;
+        }
+        .dark-mode .card h3 {
+            color: var(--primary-color);
+        }
+        .dark-mode .home-btn,
+        .dark-mode .theme-toggle {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+        }
+        .dark-mode .home-btn:hover,
+        .dark-mode .theme-toggle:hover {
+            background-color: var(--secondary-color);
+        }
+        #quote-section {
+            background: linear-gradient(to right, #e0ffff, #cce0ff);
+            border: 2px solid #87ceeb;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .dark-mode #quote-section {
+            background: linear-gradient(to right, #1a1a1a, #2a2a2a);
+            border: 2px solid #3498db;
+        }
+        #quote-text {
+            font-size: 1.8em;
+            font-style: italic;
+            color: #191970;
+            margin-bottom: 15px;
+        }
+        .dark-mode #quote-text {
+            color: #f0d362;
+        }
+        #quote-author {
+            font-weight: bold;
+            color: #000080;
+            font-size: 1.2em;
+        }
+        .dark-mode #quote-author {
+            color: #f0f0f0;
+        }
+        @media (max-width: 768px) {
+            .card {
+                width: calc(50% - 30px);
+            }
+        }
+        @media (max-width: 480px) {
+            .card {
+                width: calc(100% - 30px);
+            }
+            .home-btn, .theme-toggle {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
 </head>
 <body>
+    <header>
+        <a href="index.html"><button class="home-btn">الرئيسية</button></a>
+        <h1>السنة الثالثة</h1>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="تغيير الوضع">
+            <i class="fas fa-moon"></i>
+        </button>
+    </header>
 
-<header>
-  <h1>السنة الثالثة</h1>
-</header>
+    <div class="container">
+        <div id="quote-section">
+            <div id="quote-text"></div>
+            <div id="quote-author"></div>
+        </div>
 
-<button id="dark-mode-toggle">
-  <i class="fas fa-adjust"></i> الوضع الليلي
-</button>
+        <div class="card-container">
+            <div class="card">
+                <h3>مجموعة السنة الثالثة</h3>
+                <a href="https://www.facebook.com/groups/132359052199348/" class="card-btn">زيارة</a>
+            </div>
+            <div class="card">
+                <h3>تمارين</h3>
+                <a href="https://drive.google.com/drive/folders/1f2qKgZ7Ra9-YpIhitUx_O7DCTesbjNND?usp=sharing" class="card-btn">زيارة</a>
+            </div>
+            <div class="card">
+                <h3>قصص للمطالعة</h3>
+                <a href="#" class="card-btn">زيارة</a>
+            </div>
+            <div class="card">
+                <h3>مدونة القسم</h3>
+                <a href="#" class="card-btn">زيارة</a>
+            </div>
+            <div class="card">
+                <h3>البرنامج الدراسي</h3>
+                <a href="#" class="card-btn">زيارة</a>
+            </div>
+            <div class="card">
+                <h3>الكتب المدرسية</h3>
+                <a href="https://drive.google.com/drive/folders/1MHZjSdiXGDRvrWkToBsGUzdjy1P21hJX?usp=sharing" class="card-btn">زيارة</a>
+            </div>
+            <div class="card">
+                <h3>الكتب الموازية</h3>
+                <a href="#" class="card-btn">زيارة</a>
+            </div>
+            <div class="card">
+                <h3>الملخصات</h3>
+                <a href="#" class="card-btn">زيارة</a>
+            </div>
+            <div class="card">
+                <h3>الامتحانات</h3>
+                <a href="https://drive.google.com/drive/folders/1xSRzBgd9D1eNF_VxbQ6gYabpJhixgQju?usp=sharing" class="card-btn">زيارة</a>
+            </div>
+            <div class="card">
+                <h3>كراس العطلة</h3>
+                <a href="https://drive.google.com/drive/folders/1BN9wYf3B3dIl-tJly_q1L1EFbOcDwptn?usp=sharing" class="card-btn">زيارة</a>
+            </div>
+        </div>
+    </div>
 
-<!-- Daily Quote Section -->
-<div id="quote-section">
-  <div id="quote-text"></div>
-  <div id="quote-author"></div>
-</div>
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const themeIcon = document.querySelector('.theme-toggle i');
+            if (document.body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        }
 
-<div class="container">
-  <div class="card">
-    <h3>مجموعة السنة الثالثة</h3>
-    <a href="#" class="btn btn-success">زيارة</a> 
-  </div>
-  <div class="card">
-    <h3>تمارين</h3>
-    <a href="#" class="btn btn-success">زيارة</a> 
-  </div>
-  <div class="card">
-    <h3>قصص للمطالعة</h3>
-    <a href="#" class="btn btn-success">زيارة</a> 
-  </div>
-  <div class="card">
-    <h3>مدونة القسم</h3>
-    <a href="#" class="btn btn-success">زيارة</a> 
-  </div>
-  <div class="card">
-    <h3>البرنامج الدراسي</h3>
-    <a href="#" class="btn btn-success">زيارة</a> 
-  </div>
-  <div class="card">
-    <h3>الكتب المدرسية</h3>
-    <a href="#" class="btn btn-success">زيارة</a> 
-  </div>
-  <div class="card">
-    <h3>الكتب الموازية</h3>
-    <a href="#" class="btn btn-success">زيارة</a> 
-  </div>
-  <div class="card">
-    <h3>الملخصات</h3>
-    <a href="#" class="btn btn-success">زيارة</a> 
-  </div>
-  <div class="card">
-    <h3>الامتحانات</h3>
-    <a href="#" class="btn btn-success">زيارة</a> 
-  </div>
-  <div class="card">
-    <h3>مناظرات السنة السادسة</h3>
-    <a href="#" class="btn btn-success">زيارة</a> 
-  </div>
-  <div class="card">
-    <h3>كراس العطلة</h3>
-    <a href="#" class="btn btn-success">زيارة</a> 
-  </div>
-</div>
+        const quotes = [
+            { text: "العلم هو النور الذي يضيء دروب الحياة، فلا تدع ظلمة الجهل تخيم على مستقبلك." },
+            { text: "كلما تعلمت أكثر، كلما أدركت كم هو واسع بحر المعرفة، فاستمر في طلب العلم ولا تتوقف." },
+            { text: "التعليم هو مفتاح النجاح، فاجعل من نفسك مفتاحًا يفتح لك أبواب المستقبل." },
+            { text: "العقل كالشجرة، ينمو بالعلم والمعرفة، فاسقهما بجد واجتهاد لتنعم بثمار النجاح." },
+            { text: "لا تيأس من التعلم، فكل خطوة تخطوها نحو المعرفة هي خطوة نحو مستقبل أفضل." }
+        ];
 
+        function displayRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const randomQuote = quotes[randomIndex];
+            document.getElementById('quote-text').textContent = randomQuote.text;
+        }
 
-<script>
-  const darkModeToggle = document.getElementById('dark-mode-toggle');
-  const body = document.body;
-
-  darkModeToggle.addEventListener('click', () => {
-    body.classList.toggle('dark-mode');
-    darkModeToggle.innerHTML = body.classList.contains('dark-mode')
-        ? '<i class="fas fa-sun"></i> الوضع النهاري'
-        : '<i class="fas fa-adjust"></i> الوضع الليلي ';
-  });
-
-  const quotes = [
-    { text: "العلم هو النور الذي يضيء دروب الحياة، فلا تدع ظلمة الجهل تخيم على مستقبلك." },
-    { text: "كلما تعلمت أكثر، كلما أدركت كم هو واسع بحر المعرفة، فاستمر في طلب العلم ولا تتوقف." },
-    { text: "التعليم هو مفتاح النجاح، فاجعل من نفسك مفتاحًا يفتح لك أبواب المستقبل." },
-    { text: "العقل كالشجرة، ينمو بالعلم والمعرفة، فاسقهما بجد واجتهاد لتنعم بثمار النجاح." },
-    { text: "لا تيأس من التعلم، فكل خطوة تخطوها نحو المعرفة هي خطوة نحو مستقبل أفضل." }
-  ];
-
-  const quoteText = document.getElementById('quote-text');
-  const quoteAuthor = document.getElementById('quote-author');
-
-  function displayRandomQuote() {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    const randomQuote = quotes[randomIndex];
-    quoteText.textContent = randomQuote.text;
-  }
-
-  displayRandomQuote();
-  setInterval(displayRandomQuote, 86400000);
-
-</script>
-<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        displayRandomQuote();
+        setInterval(displayRandomQuote, 86400000);
+    </script>
 </body>
 </html>
