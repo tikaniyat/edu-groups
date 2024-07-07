@@ -91,28 +91,19 @@
             position: relative;
             border: 3px solid var(--primary-color);
         }
-        .card::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            z-index: -1;
-            filter: blur(20px);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
         .card:hover {
             transform: translateY(-10px) rotate(2deg);
-        }
-        .card:hover::before {
-            opacity: 0.3;
         }
         .card h2 {
             color: var(--primary-color);
             font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
             margin-bottom: 15px;
         }
         .card p {
@@ -149,7 +140,7 @@
             --header-text: #fff;
         }
         .dark-mode .card h2 {
-            color: var(---button-bg);
+            color: var(--button-bg);
         }
         .dark-mode .card p {
             color: var(--bold-text-color);
@@ -191,31 +182,37 @@
         <div class="card-container">
             <div class="card">
                 <h2>السنة الأولى</h2>
+                <img src="https://i.ibb.co/W6H0Yfz/1.jpg" alt="السنة الأولى">
                 <p>محتوى تعليمي للسنة الأولى</p>
                 <a href="1.html"><button class="card-btn">زيارة الصفحة</button></a>
             </div>
             <div class="card">
                 <h2>السنة الثانية</h2>
+                <img src="https://i.ibb.co/R3zLJ9s/2.jpg" alt="السنة الثانية">
                 <p>محتوى تعليمي للسنة الثانية</p>
                 <a href="2.html"><button class="card-btn">زيارة الصفحة</button></a>
             </div>
             <div class="card">
                 <h2>السنة الثالثة</h2>
+                <img src="https://i.ibb.co/Q6CdNw2/3.jpg" alt="السنة الثالثة">
                 <p>محتوى تعليمي للسنة الثالثة</p>
                 <a href="3.html"><button class="card-btn">زيارة الصفحة</button></a>
             </div>
             <div class="card">
                 <h2>السنة الرابعة</h2>
+                <img src="https://i.ibb.co/3y76W75/4.jpg" alt="السنة الرابعة">
                 <p>محتوى تعليمي للسنة الرابعة</p>
                 <a href="4.html"><button class="card-btn">زيارة الصفحة</button></a>
             </div>
             <div class="card">
                 <h2>السنة الخامسة</h2>
+                <img src="https://i.ibb.co/rZr3XGK/5.jpg" alt="السنة الخامسة">
                 <p>محتوى تعليمي للسنة الخامسة</p>
                 <a href="5.html"><button class="card-btn">زيارة الصفحة</button></a>
             </div>
             <div class="card">
                 <h2>السنة السادسة</h2>
+                <img src="https://i.ibb.co/nndgzrH/6.jpg" alt="السنة السادسة">
                 <p>محتوى تعليمي للسنة السادسة</p>
                 <a href="6.html"><button class="card-btn">زيارة الصفحة</button></a>
             </div>
