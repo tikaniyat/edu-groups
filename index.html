@@ -121,8 +121,17 @@
         .ad-item:hover {
             transform: scale(1.05) rotate(2deg);
         }
-    
-        
+        .ad-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+        .ad-item:hover img {
+            transform: scale(1.1);
+        }
         .ad-item h3 {
             color: var(--primary-color);
             margin-bottom: 5px;
@@ -288,14 +297,16 @@
             <h2 style="text-align: center; color: var(--header-text); margin-bottom: 20px;">كتب ودورات مميزة</h2>
             <div class="ad-container">
                 <div class="ad-item">
+                    <img src="/api/placeholder/280/200" alt="عنوان الكتاب">
                     <h3>عنوان الكتاب</h3>
                     <p class="professor">صاحب الكتاب</p>
                     <p></p>
                 </div>
                 <div class="ad-item">
+                    <img src="/api/placeholder/280/200" alt="دورة العلوم للأطفال">
                     <h3>عنوان الكتاب</h3>
-                    <p class="professor">صاحب الكتاب</p>
-                    <p></p>
+                    <p class="professor">أ.د. محمد العلمي</p>
+                    <p>دورة تفاعلية لاستكشاف عجائب الطبيعة</p>
                 </div>
             </div>
             <button class="nav-btn prev" onclick="changeAds(-1)">&#10094;</button>
@@ -338,36 +349,36 @@
 
         const ads = [
             {
-               
-            
+                img: "/api/placeholder/280/200",
+                alt: "صورة الكتاب",
                 title: "عنوان الكتاب",
                 professor: "صاحب الكتاب",
                 description: "وصف الكتاب"
             },
             {
-               
-      
+                img: "/api/placeholder/280/200",
+                alt: "صورة الكتاب",
                 title: "عنوان الكتاب",
                 professor: "صاحب الكتاب",
                 description: "وصف الكتاب"
             },
             {
-             
-               
+                img: "/api/placeholder/280/200",
+                alt: "صورة الكتاب",
                 title: "عنوان الكتاب",
                 professor: "صاحب الكتاب",
                 description: "وصف الكتاب"
             },
             {
-                
-               
+                img: "/api/placeholder/280/200",
+                alt: "صورة الكتاب",
                 title: "عنوان الكتاب",
                 professor: "صاحب الكتاب",
                 description: "وصف الكتاب"
             },
             {
-                
-                
+                img: "/api/placeholder/280/200",
+                alt: "صورة الكتاب",
                 title: "عنوان الكتاب",
                 professor: "صاحب الكتاب",
                 description: "وصف الكتاب"
@@ -392,7 +403,7 @@
                 const adItem = document.createElement('div');
                 adItem.className = 'ad-item';
                 adItem.innerHTML = `
-                   
+                    <img src="${ad.img}" alt="${ad.alt}">
                     <h3>${ad.title}</h3>
                     <p class="professor">${ad.professor}</p>
                     <p>${ad.description}</p>
