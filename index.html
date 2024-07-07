@@ -292,7 +292,7 @@
         </button>
     </header>
 
-    <section class="ad-section">
+    <section class="ads-section">
         <div class="container">
             <h2 style="text-align: center; color: var(--header-text); margin-bottom: 20px;">كتب ودورات مميزة</h2>
             <div class="ad-container">
@@ -301,12 +301,18 @@
                     <h3>عنوان الكتاب</h3>
                     <p class="professor">صاحب الكتاب</p>
                     <p></p>
+                    <button class="card-btn" onclick="showPhoneNumber(this)">عرض الرقم</button>
+                    <p class="phone-number" style="display: none;">الهاتف: 123-456-7890</p>
+                    <a href="#" class="card-btn" target="_blank">فيسبوك</a>
                 </div>
                 <div class="ad-item">
                     <img src="/api/placeholder/280/200" alt="دورة العلوم للأطفال">
                     <h3>عنوان الكتاب</h3>
                     <p class="professor">أ.د. محمد العلمي</p>
                     <p>دورة تفاعلية لاستكشاف عجائب الطبيعة</p>
+                    <button class="card-btn" onclick="showPhoneNumber(this)">عرض الرقم</button>
+                    <p class="phone-number" style="display: none;">الهاتف: 123-456-7890</p>
+                    <a href="#" class="card-btn" target="_blank">فيسبوك</a>
                 </div>
             </div>
             <button class="nav-btn prev" onclick="changeAds(-1)">&#10094;</button>
@@ -347,41 +353,51 @@
             themeIcon.classList.toggle('fa-sun');
         }
 
+        function showPhoneNumber(button) {
+            const phoneNumber = button.nextElementSibling;
+            phoneNumber.style.display = 'block';
+        }
+
         const ads = [
             {
                 img: "/api/placeholder/280/200",
                 alt: "صورة الكتاب",
                 title: "عنوان الكتاب",
                 professor: "صاحب الكتاب",
-                description: "وصف الكتاب"
+                description: "وصف الكتاب",
+                phone: "123-456-7890"
             },
             {
                 img: "/api/placeholder/280/200",
                 alt: "صورة الكتاب",
                 title: "عنوان الكتاب",
                 professor: "صاحب الكتاب",
-                description: "وصف الكتاب"
+                description: "وصف الكتاب",
+                phone: "123-456-7890"
             },
             {
                 img: "/api/placeholder/280/200",
                 alt: "صورة الكتاب",
                 title: "عنوان الكتاب",
                 professor: "صاحب الكتاب",
-                description: "وصف الكتاب"
+                description: "وصف الكتاب",
+                phone: "123-456-7890"
             },
             {
                 img: "/api/placeholder/280/200",
                 alt: "صورة الكتاب",
                 title: "عنوان الكتاب",
                 professor: "صاحب الكتاب",
-                description: "وصف الكتاب"
+                description: "وصف الكتاب",
+                phone: "123-456-7890"
             },
             {
                 img: "/api/placeholder/280/200",
                 alt: "صورة الكتاب",
                 title: "عنوان الكتاب",
                 professor: "صاحب الكتاب",
-                description: "وصف الكتاب"
+                description: "وصف الكتاب",
+                phone: "123-456-7890"
             }
         ];
 
@@ -407,6 +423,9 @@
                     <h3>${ad.title}</h3>
                     <p class="professor">${ad.professor}</p>
                     <p>${ad.description}</p>
+                    <button class="card-btn" onclick="showPhoneNumber(this)">عرض الرقم</button>
+                    <p class="phone-number" style="display: none;">الهاتف: ${ad.phone}</p>
+                    <a href="#" class="card-btn" target="_blank">فيسبوك</a>
                 `;
                 
                 adContainer.appendChild(adItem);
