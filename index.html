@@ -45,9 +45,10 @@
             font-size: 2.5em;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
-        .home-btn, .theme-toggle {
+        .theme-toggle {
             position: absolute;
             top: 50%;
+            right: 20px;
             transform: translateY(-50%);
             background-color: var(--button-bg);
             color: var(--button-text);
@@ -59,19 +60,123 @@
             font-weight: bold;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        .home-btn:hover, .theme-toggle:hover {
+        .theme-toggle:hover {
             background-color: var(--secondary-color);
             transform: translateY(-50%) scale(1.05);
         }
-        .home-btn {
-            left: 20px;
+
+        /* Ad section styles */
+        .ad-section {
+            background: linear-gradient(45deg, #FF9A8B, #FF6A88, #FF99AC);
+            padding: 40px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
         }
-        .theme-toggle {
-            right: 20px;
+        .ad-section::before, .ad-section::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFD93D"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>') no-repeat;
+            animation: floatStar 5s infinite linear;
+        }
+        .ad-section::before {
+            top: -50px;
+            left: -50px;
+        }
+        .ad-section::after {
+            bottom: -30px;
+            right: -30px;
+            width: 80px;
+            height: 80px;
+            animation-duration: 7s;
+            animation-direction: reverse;
+        }
+        @keyframes floatStar {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+        .ad-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            padding: 10px;
+            position: relative;
+        }
+        .ad-item {
+            flex: 0 0 auto;
+            width: 280px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 15px;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .ad-item:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+        .ad-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
+        }
+        .ad-item:hover img {
+            transform: scale(1.1);
+        }
+        .ad-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-size: 1.4em;
+        }
+        .ad-item p {
+            font-size: 0.9em;
+            color: var(--text-color);
+        }
+        .ad-item .professor {
+            font-weight: bold;
+            color: var(--bold-text-color);
+        }
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 10;
         }
+        .nav-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--card-bg);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .nav-btn.prev {
+            left: 20px;
+        }
+        .nav-btn.next {
+            right: 20px;
+        }
+
+        /* Card container styles */
         .card-container {
             display: flex;
             flex-wrap: wrap;
@@ -136,6 +241,8 @@
             background-color: var(--secondary-color);
             transform: scale(1.05) rotate(-2deg);
         }
+
+        /* Dark mode styles */
         .dark-mode {
             --primary-color: #FF9A8B;
             --secondary-color: #74EBD5;
@@ -148,34 +255,32 @@
             --header-bg: #6C5CE7;
             --header-text: #fff;
         }
+        .dark-mode .ad-item {
+            background-color: rgba(22, 33, 62, 0.9);
+        }
+        .dark-mode .ad-item h3 {
+            color: var(--button-bg);
+        }
+        .dark-mode .ad-item p {
+            color: var(--text-color);
+        }
+        .dark-mode .ad-item .professor {
+            color: var(--bold-text-color);
+        }
         .dark-mode .card h2 {
             color: var(--button-bg);
         }
         .dark-mode .card p {
             color: var(--bold-text-color);
         }
-        .dark-mode .home-btn,
-        .dark-mode .theme-toggle {
-            background-color: var(--button-bg);
-            color: var(--button-text);
-        }
-        .dark-mode .home-btn:hover,
-        .dark-mode .theme-toggle:hover {
-            background-color: var(--secondary-color);
-        }
+
         @media (max-width: 768px) {
             .card {
                 width: calc(100% - 30px);
             }
-        }
-        @media (max-width: 480px) {
-            .home-btn, .theme-toggle {
-                padding: 8px 15px;
-                font-size: 0.9em;
+            .ad-container {
+                flex-direction: column;
             }
-        }
-        .dark-mode .card p{
-          color: white;
         }
     </style>
 </head>
@@ -186,6 +291,29 @@
             <i class="fas fa-moon"></i>
         </button>
     </header>
+
+    <section class="ad-section">
+        <div class="container">
+            <h2 style="text-align: center; color: var(--header-text); margin-bottom: 20px;">كتب ودورات مميزة</h2>
+            <div class="ad-container">
+                <div class="ad-item">
+                    <img src="/api/placeholder/280/200" alt="كتاب الرياضيات الممتعة">
+                    <h3>الرياضيات الممتعة</h3>
+                    <p class="professor">د. سارة الأحمد</p>
+                    <p>اكتشف عالم الأرقام بطريقة مبتكرة وممتعة</p>
+                </div>
+                <div class="ad-item">
+                    <img src="/api/placeholder/280/200" alt="دورة العلوم للأطفال">
+                    <h3>مغامرات في عالم العلوم</h3>
+                    <p class="professor">أ.د. محمد العلمي</p>
+                    <p>دورة تفاعلية لاستكشاف عجائب الطبيعة</p>
+                </div>
+            </div>
+            <button class="nav-btn prev" onclick="changeAds(-1)">&#10094;</button>
+            <button class="nav-btn next" onclick="changeAds(1)">&#10095;</button>
+        </div>
+    </section>
+
     <div class="container">
         <div class="card-container">
             <div class="card">
@@ -207,22 +335,89 @@
                 <h2>مشاكل وحلول</h2>
                 <p>تعلم كيفية حل المشكلات اليومية بطرق إبداعية</p>
                 <p>هذا القسم طور الإنشاء</p>
-                <!-- <button class="card-btn">جد الحلول</button> -->
             </div>
         </div>
     </div>
+
     <script>
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
             const themeIcon = document.querySelector('.theme-toggle i');
-            if (document.body.classList.contains('dark-mode')) {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
+            themeIcon.classList.toggle('fa-moon');
+            themeIcon.classList.toggle('fa-sun');
+        }
+
+        const ads = [
+            {
+                img: "/api/placeholder/280/200",
+                alt: "صورة الكتاب",
+                title: "عنوان الكتاب",
+                professor: "صاحب الكتاب",
+                description: "وصف الكتاب"
+            },
+            {
+                img: "/api/placeholder/280/200",
+                alt: "صورة الكتاب",
+                title: "عنوان الكتاب",
+                professor: "صاحب الكتاب",
+                description: "وصف الكتاب"
+            },
+            {
+                img: "/api/placeholder/280/200",
+                alt: "صورة الكتاب",
+                title: "عنوان الكتاب",
+                professor: "صاحب الكتاب",
+                description: "وصف الكتاب"
+            },
+            {
+                img: "/api/placeholder/280/200",
+                alt: "صورة الكتاب",
+                title: "عنوان الكتاب",
+                professor: "صاحب الكتاب",
+                description: "وصف الكتاب"
+            },
+            {
+                img: "/api/placeholder/280/200",
+                alt: "صورة الكتاب",
+                title: "عنوان الكتاب",
+                professor: "صاحب الكتاب",
+                description: "وصف الكتاب"
+            }
+        ];
+
+        let currentAdIndex = 0;
+
+        function changeAds(direction) {
+            currentAdIndex = (currentAdIndex + direction + ads.length) % ads.length;
+            updateAds();
+        }
+
+        function updateAds() {
+            const adContainer = document.querySelector('.ad-container');
+            adContainer.innerHTML = '';
+            
+            for (let i = 0; i < 2; i++) {
+                const adIndex = (currentAdIndex + i) % ads.length;
+                const ad = ads[adIndex];
+                
+                const adItem = document.createElement('div');
+                adItem.className = 'ad-item';
+                adItem.innerHTML = `
+                    <img src="${ad.img}" alt="${ad.alt}">
+                    <h3>${ad.title}</h3>
+                    <p class="professor">${ad.professor}</p>
+                    <p>${ad.description}</p>
+                `;
+                
+                adContainer.appendChild(adItem);
             }
         }
+
+        // Initialize ads
+        updateAds();
+
+        // Auto-change ads every 5 seconds
+        setInterval(() => changeAds(1), 5000);
     </script>
 </body>
 </html>
