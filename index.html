@@ -65,8 +65,8 @@
             transform: translateY(-50%) scale(1.05);
         }
 
-        /* Ad section styles */
-        .ad-section {
+        /* New section styles */
+        .promotion-section {
             background: linear-gradient(45deg, #FF9A8B, #FF6A88, #FF99AC);
             padding: 40px 0;
             margin-bottom: 30px;
@@ -74,7 +74,7 @@
             position: relative;
             overflow: hidden;
         }
-        .ad-section::before, .ad-section::after {
+        .promotion-section::before, .promotion-section::after {
             content: '';
             position: absolute;
             width: 100px;
@@ -82,11 +82,11 @@
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23FFD93D"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>') no-repeat;
             animation: floatStar 5s infinite linear;
         }
-        .ad-section::before {
+        .promotion-section::before {
             top: -50px;
             left: -50px;
         }
-        .ad-section::after {
+        .promotion-section::after {
             bottom: -30px;
             right: -30px;
             width: 80px;
@@ -99,7 +99,7 @@
             50% { transform: translateY(-20px) rotate(180deg); }
             100% { transform: translateY(0) rotate(360deg); }
         }
-        .ad-container {
+        .promotion-container {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -107,7 +107,7 @@
             padding: 10px;
             position: relative;
         }
-        .ad-item {
+        .promotion-item {
             flex: 0 0 auto;
             width: 280px;
             background-color: rgba(255, 255, 255, 0.9);
@@ -118,10 +118,10 @@
             position: relative;
             overflow: hidden;
         }
-        .ad-item:hover {
+        .promotion-item:hover {
             transform: scale(1.05) rotate(2deg);
         }
-        .ad-item img {
+        .promotion-item img {
             width: 100%;
             height: 200px;
             object-fit: cover;
@@ -129,19 +129,19 @@
             margin-bottom: 10px;
             transition: transform 0.3s ease;
         }
-        .ad-item:hover img {
+        .promotion-item:hover img {
             transform: scale(1.1);
         }
-        .ad-item h3 {
+        .promotion-item h3 {
             color: var(--primary-color);
             margin-bottom: 5px;
             font-size: 1.4em;
         }
-        .ad-item p {
+        .promotion-item p {
             font-size: 0.9em;
             color: var(--text-color);
         }
-        .ad-item .professor {
+        .promotion-item .professor {
             font-weight: bold;
             color: var(--bold-text-color);
         }
@@ -255,16 +255,16 @@
             --header-bg: #6C5CE7;
             --header-text: #fff;
         }
-        .dark-mode .ad-item {
+        .dark-mode .promotion-item {
             background-color: rgba(22, 33, 62, 0.9);
         }
-        .dark-mode .ad-item h3 {
+        .dark-mode .promotion-item h3 {
             color: var(--button-bg);
         }
-        .dark-mode .ad-item p {
+        .dark-mode .promotion-item p {
             color: var(--text-color);
         }
-        .dark-mode .ad-item .professor {
+        .dark-mode .promotion-item .professor {
             color: var(--bold-text-color);
         }
         .dark-mode .card h2 {
@@ -278,7 +278,7 @@
             .card {
                 width: calc(100% - 30px);
             }
-            .ad-container {
+            .promotion-container {
                 flex-direction: column;
             }
         }
@@ -292,31 +292,31 @@
         </button>
     </header>
 
-    <section class="ads-section">
+    <section class="promotion-section">
         <div class="container">
             <h2 style="text-align: center; color: var(--header-text); margin-bottom: 20px;">كتب ودورات مميزة</h2>
-            <div class="ad-container">
-                <div class="ad-item">
+            <div class="promotion-container">
+                <div class="promotion-item">
                     <img src="/api/placeholder/280/200" alt="عنوان الكتاب">
                     <h3>عنوان الكتاب</h3>
                     <p class="professor">صاحب الكتاب</p>
                     <p></p>
                     <button class="card-btn" onclick="showPhoneNumber(this)">عرض الرقم</button>
                     <p class="phone-number" style="display: none;">الهاتف: 123-456-7890</p>
-                    <a href="#" class="card-btn" target="_blank">فيسبوك</a>
+                    <a href="https://www.facebook.com/yourpage" class="card-btn" target="_blank">فيسبوك</a>
                 </div>
-                <div class="ad-item">
+                <div class="promotion-item">
                     <img src="/api/placeholder/280/200" alt="دورة العلوم للأطفال">
                     <h3>عنوان الكتاب</h3>
                     <p class="professor">أ.د. محمد العلمي</p>
                     <p>دورة تفاعلية لاستكشاف عجائب الطبيعة</p>
                     <button class="card-btn" onclick="showPhoneNumber(this)">عرض الرقم</button>
                     <p class="phone-number" style="display: none;">الهاتف: 123-456-7890</p>
-                    <a href="#" class="card-btn" target="_blank">فيسبوك</a>
+                    <a href="https://www.facebook.com/yourpage" class="card-btn" target="_blank">فيسبوك</a>
                 </div>
             </div>
-            <button class="nav-btn prev" onclick="changeAds(-1)">&#10094;</button>
-            <button class="nav-btn next" onclick="changeAds(1)">&#10095;</button>
+            <button class="nav-btn prev" onclick="changePromotions(-1)">&#10094;</button>
+            <button class="nav-btn next" onclick="changePromotions(1)">&#10095;</button>
         </div>
     </section>
 
@@ -358,7 +358,7 @@
             phoneNumber.style.display = 'block';
         }
 
-        const ads = [
+        const promotions = [
             {
                 img: "/api/placeholder/280/200",
                 alt: "صورة الكتاب",
@@ -401,42 +401,42 @@
             }
         ];
 
-        let currentAdIndex = 0;
+        let currentPromotionIndex = 0;
 
-        function changeAds(direction) {
-            currentAdIndex = (currentAdIndex + direction + ads.length) % ads.length;
-            updateAds();
+        function changePromotions(direction) {
+            currentPromotionIndex = (currentPromotionIndex + direction + promotions.length) % promotions.length;
+            updatePromotions();
         }
 
-        function updateAds() {
-            const adContainer = document.querySelector('.ad-container');
-            adContainer.innerHTML = '';
+        function updatePromotions() {
+            const promotionContainer = document.querySelector('.promotion-container');
+            promotionContainer.innerHTML = '';
             
             for (let i = 0; i < 2; i++) {
-                const adIndex = (currentAdIndex + i) % ads.length;
-                const ad = ads[adIndex];
+                const promotionIndex = (currentPromotionIndex + i) % promotions.length;
+                const promotion = promotions[promotionIndex];
                 
-                const adItem = document.createElement('div');
-                adItem.className = 'ad-item';
-                adItem.innerHTML = `
-                    <img src="${ad.img}" alt="${ad.alt}">
-                    <h3>${ad.title}</h3>
-                    <p class="professor">${ad.professor}</p>
-                    <p>${ad.description}</p>
+                const promotionItem = document.createElement('div');
+                promotionItem.className = 'promotion-item';
+                promotionItem.innerHTML = `
+                    <img src="${promotion.img}" alt="${promotion.alt}">
+                    <h3>${promotion.title}</h3>
+                    <p class="professor">${promotion.professor}</p>
+                    <p>${promotion.description}</p>
                     <button class="card-btn" onclick="showPhoneNumber(this)">عرض الرقم</button>
-                    <p class="phone-number" style="display: none;">الهاتف: ${ad.phone}</p>
-                    <a href="#" class="card-btn" target="_blank">فيسبوك</a>
+                    <p class="phone-number" style="display: none;">الهاتف: ${promotion.phone}</p>
+                    <a href="https://www.facebook.com/yourpage" class="card-btn" target="_blank">فيسبوك</a>
                 `;
                 
-                adContainer.appendChild(adItem);
+                promotionContainer.appendChild(promotionItem);
             }
         }
 
-        // Initialize ads
-        updateAds();
+        // Initialize promotions
+        updatePromotions();
 
-        // Auto-change ads every 5 seconds
-        setInterval(() => changeAds(1), 5000);
+        // Auto-change promotions every 5 seconds
+        setInterval(() => changePromotions(1), 5000);
     </script>
 </body>
 </html>
