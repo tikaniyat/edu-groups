@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>واحة المعرفة</title>
+    <title>ألعاب فكرية</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -45,9 +45,10 @@
             font-size: 2.5em;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
-        .home-btn, .theme-toggle {
+        .theme-toggle {
             position: absolute;
             top: 50%;
+            right: 20px;
             transform: translateY(-50%);
             background-color: var(--button-bg);
             color: var(--button-text);
@@ -59,18 +60,9 @@
             font-weight: bold;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        .home-btn:hover, .theme-toggle:hover {
+        .theme-toggle:hover {
             background-color: var(--secondary-color);
             transform: translateY(-50%) scale(1.05);
-        }
-        .home-btn {
-            left: 20px;
-        }
-        .theme-toggle {
-            right: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         .card-container {
             display: flex;
@@ -84,31 +76,36 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             margin: 15px;
             padding: 25px;
-            width: calc(33.333% - 30px);
+            width: calc(33.33% - 30px);
             text-align: center;
             transition: all 0.3s ease;
             overflow: hidden;
             position: relative;
             border: 3px solid var(--primary-color);
         }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            z-index: -1;
+            filter: blur(20px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
         .card:hover {
             transform: translateY(-10px) rotate(2deg);
+        }
+        .card:hover::before {
+            opacity: 0.3;
         }
         .card h2 {
             color: var(--primary-color);
             font-size: 1.8em;
             margin-bottom: 15px;
-        }
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-        .card p {
-            color: var(--bold-text-color);
-            font-weight: bold;
         }
         .card-btn {
             background-color: var(--button-bg);
@@ -142,18 +139,6 @@
         .dark-mode .card h2 {
             color: var(--button-bg);
         }
-        .dark-mode .card p {
-            color: var(--bold-text-color);
-        }
-        .dark-mode .home-btn,
-        .dark-mode .theme-toggle {
-            background-color: var(--button-bg);
-            color: var(--button-text);
-        }
-        .dark-mode .home-btn:hover,
-        .dark-mode .theme-toggle:hover {
-            background-color: var(--secondary-color);
-        }
         @media (max-width: 768px) {
             .card {
                 width: calc(50% - 30px);
@@ -163,17 +148,34 @@
             .card {
                 width: calc(100% - 30px);
             }
-            .home-btn, .theme-toggle {
-                padding: 8px 15px;
-                font-size: 0.9em;
-            }
+        }
+        .home-btn, .theme-toggle {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .home-btn:hover, .theme-toggle:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-50%) scale(1.05);
+        }
+        .home-btn {
+            left: 20px;
         }
     </style>
 </head>
 <body>
     <header>
         <a href="index.html"><button class="home-btn"><span>الرئيسية</span><i class="fas fa-home"></i></button></a>
-        <h1>واحة المعرفة</h1>
+        <h1>ألعاب فكرية</h1>
         <button class="theme-toggle" onclick="toggleTheme()" aria-label="تغيير الوضع">
             <i class="fas fa-moon"></i>
         </button>
@@ -181,54 +183,38 @@
     <div class="container">
         <div class="card-container">
             <div class="card">
-                <h2>السنة الأولى</h2>
-                <img src="https://i.ibb.co/h7Zxjc9/1.jpg" alt="السنة الأولى">
-                <p>محتوى تعليمي للسنة الأولى</p>
-                <a href="1.html"><button class="card-btn">زيارة الصفحة</button></a>
+                <h2>ألغاز الكلمات</h2>
+                <a href="words games.html"><button class="card-btn">ابدأ اللعب</button></a>
             </div>
             <div class="card">
-                <h2>السنة الثانية</h2>
-                <img src="https://i.ibb.co/YNnWjf5/2.jpg" alt="السنة الثانية">
-                <p>محتوى تعليمي للسنة الثانية</p>
-                <a href="2.html"><button class="card-btn">زيارة الصفحة</button></a>
+                <h2>الرياضيات الممتعة</h2>
+                <!-- <button class="card-btn">ابدأ اللعب</button> -->
             </div>
             <div class="card">
-                <h2>السنة الثالثة</h2>
-                <img src="https://i.ibb.co/Bt37805/3.jpg" alt="السنة الثالثة">
-                <p>محتوى تعليمي للسنة الثالثة</p>
-                <a href="3.html"><button class="card-btn">زيارة الصفحة</button></a>
+                <h2>ألعاب الذاكرة</h2>
+                <!-- <button class="card-btn">ابدأ اللعب</button> -->
             </div>
             <div class="card">
-                <h2>السنة الرابعة</h2>
-                <img src="https://i.ibb.co/g3NYwwb/4.jpg" alt="السنة الرابعة">
-                <p>محتوى تعليمي للسنة الرابعة</p>
-                <a href="4.html"><button class="card-btn">زيارة الصفحة</button></a>
+                <h2>الألغاز المصورة</h2>
+                <!-- <button class="card-btn">ابدأ اللعب</button> -->
             </div>
             <div class="card">
-                <h2>السنة الخامسة</h2>
-                <img src="https://i.ibb.co/vsxjtVy/5.jpg" alt="السنة الخامسة">
-                <p>محتوى تعليمي للسنة الخامسة</p>
-                <a href="5.html"><button class="card-btn">زيارة الصفحة</button></a>
+                <h2>تحديات المنطق</h2>
+                <!-- <button class="card-btn">ابدأ اللعب</button> -->
             </div>
             <div class="card">
-                <h2>السنة السادسة</h2>
-                <img src="https://i.ibb.co/6N7844T/6.jpg" alt="السنة السادسة">
-                <p>محتوى تعليمي للسنة السادسة</p>
-                <a href="6.html"><button class="card-btn">زيارة الصفحة</button></a>
+                <h2>ألعاب التركيز</h2>
+                <!-- <button class="card-btn">ابدأ اللعب</button> -->
             </div>
         </div>
     </div>
+
     <script>
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
             const themeIcon = document.querySelector('.theme-toggle i');
-            if (document.body.classList.contains('dark-mode')) {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-            }
+            themeIcon.classList.toggle('fa-moon');
+            themeIcon.classList.toggle('fa-sun');
         }
     </script>
 </body>
