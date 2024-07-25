@@ -221,9 +221,8 @@
         </div>
         <div class="filter-buttons">
             <button class="filter-button active" onclick="filterTeachers('all')">الكل</button>
-            <button class="filter-button" onclick="filterTeachers('رياضيات')">رياضيات</button>
-            <button class="filter-button" onclick="filterTeachers('عربية')">عربية</button>
             <button class="filter-button" onclick="filterTeachers('إيقاظ + رياضيات')">إيقاظ + رياضيات</button>
+            <button class="filter-button" onclick="filterTeachers('عربية')">عربية</button>
             <button class="filter-button" onclick="filterTeachers('فرنسية')">فرنسية</button>
         </div>
         <div id="selectedCategory"></div>
@@ -234,18 +233,18 @@
 
     <script>
         const teachers = [
-            { name: "حكيم الصيد", subject: "رياضيات", facebook: "Essid Hakim", image: "https://i.ibb.co/wRVLmXL/math.png" },
-            { name: "شريف عبد اللاوي", subject: "رياضيات", facebook: "شريف عبد اللاوي", image: "https://i.ibb.co/wRVLmXL/math.png" },
-            { name: "محمد علي", subject: "رياضيات", facebook: "Mohamed Ali", image: "https://i.ibb.co/wRVLmXL/math.png" },
-            { name: "محمد رواحي", subject: "رياضيات", facebook: "Med Rouahi", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "حكيم الصيد", subject: "إيقاظ + رياضيات", facebook: "Essid Hakim", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "شريف عبد اللاوي", subject: "إيقاظ + رياضيات", facebook: "شريف عبد اللاوي", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "محمد علي", subject: "إيقاظ + رياضيات", facebook: "Mohamed Ali", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "محمد رواحي", subject: "إيقاظ + رياضيات", facebook: "Med Rouahi", image: "https://i.ibb.co/wRVLmXL/math.png" },
             { name: "شكري صوافي", subject: "عربية", facebook: "Chokri Saouafi", image: "https://i.ibb.co/V9fYfGD/arabic.png" },
-            { name: "محمد عيادي", subject: "رياضيات", facebook: "محمد عيادي", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "محمد عيادي", subject: "إيقاظ + رياضيات", facebook: "محمد عيادي", image: "https://i.ibb.co/wRVLmXL/math.png" },
             { name: "نبيل فالح", subject: "عربية", facebook: "Nabil Faleh", image: "https://i.ibb.co/V9fYfGD/arabic.png" },
             { name: "وليد كراي", subject: "إيقاظ + رياضيات", facebook: "Walid Karray", image: "https://i.ibb.co/wRVLmXL/math.png" },
             { name: "سفيان فرجاني", subject: "إيقاظ + رياضيات", facebook: "Sofiene Ferjani", image: "https://i.ibb.co/wRVLmXL/math.png" },
             { name: "وحيد طبلبي", subject: "عربية", facebook: "Wahid Tbolbi", image: "https://i.ibb.co/V9fYfGD/arabic.png" },
             { name: "فوزي بدري", subject: "فرنسية", facebook: "Faouzi Badri", image: "https://i.ibb.co/twRykSX/french.png" },
-            { name: "منير جميعي", subject: "رياضيات", facebook: "Mounir Jemai", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "منير جميعي", subject: "إيقاظ + رياضيات", facebook: "Mounir Jemai", image: "https://i.ibb.co/wRVLmXL/math.png" },
         ];
 
         function createTeacherCard(teacher) {
@@ -280,9 +279,8 @@
             const categoryElement = document.getElementById('selectedCategory');
             const categories = {
                 'all': 'جميع المعلمين',
-                'رياضيات': 'رياضيات',
-                'عربية': 'عربية',
                 'إيقاظ + رياضيات': 'إيقاظ + رياضيات',
+                'عربية': 'عربية',
                 'فرنسية': 'فرنسية'
             };
             categoryElement.textContent = `الفئة المحددة: ${categories[subject]}`;
