@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المعلمون - واحة المعرفة للأطفال</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #FF6B6B;
+            --secondary-color: #4ECDC4;
+            --text-color: #333;
+            --bold-text-color: #000;
+            --bg-color: #F7FFF7;
+            --card-bg: #fff;
+            --button-bg: #FFD93D;
+            --button-text: #333;
+            --header-bg: #6C5CE7;
+            --header-text: #fff;
+        }
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: var(--header-bg);
+            color: var(--header-text);
+            text-align: center;
+            padding: 1em;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-bottom: 5px solid var(--secondary-color);
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .theme-toggle, .home-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .theme-toggle {
+            right: 20px;
+        }
+        .home-button {
+            left: 20px;
+        }
+        .theme-toggle:hover, .home-button:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-50%) scale(1.05);
+        }
+        .greeting {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: var(--bold-text-color);
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 40px;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin: 15px;
+            padding: 25px;
+            width: calc(33% - 30px);
+            text-align: center;
+            transition: all 0.3s ease;
+            overflow: hidden;
+            position: relative;
+            border: 3px solid var(--primary-color);
+            cursor: pointer;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            z-index: -1;
+            filter: blur(20px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px) rotate(2deg);
+        }
+        .card:hover::before {
+            opacity: 0.3;
+        }
+        .card-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 10%;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .card h2 {
+            color: var(--primary-color);
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        .card p {
+            color: var(--bold-text-color);
+            font-weight: bold;
+        }
+        .dark-mode {
+            --primary-color: #FF9A8B;
+            --secondary-color: #74EBD5;
+            --text-color: #FFFFFF;
+            --bold-text-color: #FFFFFF;
+            --bg-color: #1A1A2E;
+            --card-bg: #16213E;
+            --button-bg: #FFD93D;
+            --button-text: #333;
+            --header-bg: #6C5CE7;
+            --header-text: #fff;
+        }
+        @media (max-width: 768px) {
+            .card {
+                width: calc(100% - 30px);
+            }
+            .theme-toggle, .home-button {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .filter-button {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .filter-button:hover, .filter-button.active {
+            background-color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+        .teacher-info {
+            margin-top: 15px;
+        }
+        .teacher-button {
+            background-color: var(--primary-color);
+            color: var(--card-bg);
+            border: none;
+            padding: 8px 15px;
+            margin-top: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        .teacher-button:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+        #selectedCategory {
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>المعلمون</h1>
+        <a href="index.html"><button class="home-button" onclick="goHome()">الرئيسية</button></a>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="تغيير الوضع">
+            <i class="fas fa-moon"></i>
+        </button>
+    </header>
+    <div class="container">
+        <div class="greeting">
+            <p>مرحباً بكم في قسم المعلمين! اختر المادة للاطلاع على معلومات المعلمين.</p>
+        </div>
+        <div class="filter-buttons">
+            <button class="filter-button active" onclick="filterTeachers('all')">الكل</button>
+            <button class="filter-button" onclick="filterTeachers('رياضيات')">رياضيات</button>
+            <button class="filter-button" onclick="filterTeachers('عربية')">عربية</button>
+            <button class="filter-button" onclick="filterTeachers('إيقاظ + رياضيات')">إيقاظ + رياضيات</button>
+            <button class="filter-button" onclick="filterTeachers('فرنسية')">فرنسية</button>
+        </div>
+        <div id="selectedCategory"></div>
+        <div class="card-container" id="teacherCards">
+            <!-- Teacher cards will be dynamically added here -->
+        </div>
+    </div>
+
+    <script>
+        const teachers = [
+            { name: "حكيم الصيد", subject: "رياضيات", facebook: "Essid Hakim", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "شريف عبد اللاوي", subject: "رياضيات", facebook: "شريف عبد اللاوي", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "محمد علي", subject: "رياضيات", facebook: "Mohamed Ali", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "محمد رواحي", subject: "رياضيات", facebook: "Med Rouahi", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "شكري صوافي", subject: "عربية", facebook: "Chokri Saouafi", image: "https://i.ibb.co/V9fYfGD/arabic.png" },
+            { name: "محمد عيادي", subject: "رياضيات", facebook: "محمد عيادي", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "نبيل فالح", subject: "عربية", facebook: "Nabil Faleh", image: "https://i.ibb.co/V9fYfGD/arabic.png" },
+            { name: "وليد كراي", subject: "إيقاظ + رياضيات", facebook: "Walid Karray", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "سفيان فرجاني", subject: "إيقاظ + رياضيات", facebook: "Sofiene Ferjani", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "وحيد طبلبي", subject: "عربية", facebook: "Wahid Tbolbi", image: "https://i.ibb.co/V9fYfGD/arabic.png" },
+            { name: "فوزي بدري", subject: "فرنسية", facebook: "Faouzi Badri", image: "https://i.ibb.co/twRykSX/french.png" },
+            { name: "منير جميعي", subject: "رياضيات", facebook: "Mounir Jemai", image: "https://i.ibb.co/wRVLmXL/math.png" },
+        ];
+
+        function createTeacherCard(teacher) {
+            return `
+                <div class="card" data-subject="${teacher.subject}">
+                    <div class="card-image">
+                        <img src="${teacher.image}" alt="صورة ${teacher.name}">
+                    </div>
+                    <h2>${teacher.name}</h2>
+                    <div class="teacher-info">
+                        <p>الاختصاص: ${teacher.subject}</p>
+                        <button class="teacher-button" onclick="openFacebook('${teacher.facebook}')">حساب فيسبوك</button>
+                        <button class="teacher-button" onclick="openEducationalResources('${teacher.name}')">الموارد التعليمية</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function filterTeachers(subject) {
+            const cardContainer = document.getElementById('teacherCards');
+            cardContainer.innerHTML = '';
+            const filteredTeachers = subject === 'all' ? teachers : teachers.filter(teacher => teacher.subject === subject);
+            filteredTeachers.forEach(teacher => {
+                cardContainer.innerHTML += createTeacherCard(teacher);
+            });
+
+            updateSelectedCategory(subject);
+            updateActiveButton(subject);
+        }
+
+        function updateSelectedCategory(subject) {
+            const categoryElement = document.getElementById('selectedCategory');
+            const categories = {
+                'all': 'جميع المعلمين',
+                'رياضيات': 'رياضيات',
+                'عربية': 'عربية',
+                'إيقاظ + رياضيات': 'إيقاظ + رياضيات',
+                'فرنسية': 'فرنسية'
+            };
+            categoryElement.textContent = `الفئة المحددة: ${categories[subject]}`;
+        }
+
+        function updateActiveButton(subject) {
+            const buttons = document.querySelectorAll('.filter-button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+                if (button.textContent === (subject === 'all' ? 'الكل' : subject)) {
+                    button.classList.add('active');
+                }
+            });
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const themeIcon = document.querySelector('.theme-toggle i');
+            themeIcon.classList.toggle('fa-moon');
+            themeIcon.classList.toggle('fa-sun');
+        }
+
+        function goHome() {
+            // Add the logic to navigate to the home page
+            console.log('Navigating to home page');
+        }
+
+        function openFacebook(facebookUsername) {
+            // Add the logic to open Facebook profile
+            console.log(`Opening Facebook profile: https://www.facebook.com/${facebookUsername}`);
+        }
+
+        function openEducationalResources(teacherName) {
+            // Add the logic to open educational resources
+            console.log(`Opening educational resources for ${teacherName}`);
+        }
+
+        // Initialize the page with all teachers
+        window.onload = function() {
+            filterTeachers('all');
+        }
+    </script>
+</body>
+</html>
