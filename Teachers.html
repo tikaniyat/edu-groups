@@ -193,6 +193,8 @@
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
         }
         .teacher-button:hover {
             background-color: var(--secondary-color);
@@ -210,7 +212,7 @@
 <body>
     <header>
         <h1>المعلمون</h1>
-        <a href="index.html"><button class="home-button" onclick="goHome()">الرئيسية</button></a>
+        <a href="index.html" class="home-button">الرئيسية</a>
         <button class="theme-toggle" onclick="toggleTheme()" aria-label="تغيير الوضع">
             <i class="fas fa-moon"></i>
         </button>
@@ -224,6 +226,7 @@
             <button class="filter-button" onclick="filterTeachers('إيقاظ + رياضيات')">إيقاظ + رياضيات</button>
             <button class="filter-button" onclick="filterTeachers('عربية')">عربية</button>
             <button class="filter-button" onclick="filterTeachers('فرنسية')">فرنسية</button>
+            <button class="filter-button" onclick="filterTeachers('إنقليزية')">إنقليزية</button>
         </div>
         <div id="selectedCategory"></div>
         <div class="card-container" id="teacherCards">
@@ -233,18 +236,19 @@
 
     <script>
         const teachers = [
-            { name: "حكيم الصيد", subject: "إيقاظ + رياضيات", facebook: "Essid Hakim", image: "https://i.ibb.co/wRVLmXL/math.png" },
-            { name: "شريف عبد اللاوي", subject: "إيقاظ + رياضيات", facebook: "شريف عبد اللاوي", image: "https://i.ibb.co/wRVLmXL/math.png" },
-            { name: "محمد علي", subject: "إيقاظ + رياضيات", facebook: "Mohamed Ali", image: "https://i.ibb.co/wRVLmXL/math.png" },
-            { name: "محمد رواحي", subject: "إيقاظ + رياضيات", facebook: "Med Rouahi", image: "https://i.ibb.co/wRVLmXL/math.png" },
-            { name: "شكري صوافي", subject: "عربية", facebook: "Chokri Saouafi", image: "https://i.ibb.co/V9fYfGD/arabic.png" },
-            { name: "محمد عيادي", subject: "إيقاظ + رياضيات", facebook: "محمد عيادي", image: "https://i.ibb.co/wRVLmXL/math.png" },
-            { name: "نبيل فالح", subject: "عربية", facebook: "Nabil Faleh", image: "https://i.ibb.co/V9fYfGD/arabic.png" },
-            { name: "وليد كراي", subject: "إيقاظ + رياضيات", facebook: "Walid Karray", image: "https://i.ibb.co/wRVLmXL/math.png" },
-            { name: "سفيان فرجاني", subject: "إيقاظ + رياضيات", facebook: "Sofiene Ferjani", image: "https://i.ibb.co/wRVLmXL/math.png" },
-            { name: "وحيد طبلبي", subject: "عربية", facebook: "Wahid Tbolbi", image: "https://i.ibb.co/V9fYfGD/arabic.png" },
-            { name: "فوزي بدري", subject: "فرنسية", facebook: "Faouzi Badri", image: "https://i.ibb.co/twRykSX/french.png" },
-            { name: "منير جميعي", subject: "إيقاظ + رياضيات", facebook: "Mounir Jemai", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "حكيم الصيد", subject: "إيقاظ + رياضيات", facebook: "https://www.facebook.com/profile.php?id=100074781600175", resources: "https://drive.google.com/drive/folders/16SR9rGbaTBNAjaQkuNofz8rgSpCADYt1?usp=sharing", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "رشيد عبد اللاوي", subject: "إيقاظ + رياضيات", facebook: "https://www.facebook.com/bolbol.jihed/", resources: "https://drive.google.com/drive/folders/1lV396Ch6Rsx0eTQGLPFBIFc_0bpeTtxy?usp=sharing", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "محمد علي", subject: "إيقاظ + رياضيات", facebook: "https://www.facebook.com/profile.php?id=100028142543146", resources: "https://drive.google.com/drive/folders/1jsZWx0wkuX-ug3lSz8gM0q3w-hiSgU44?usp=sharing", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "محمد رواحي", subject: "إيقاظ + رياضيات", facebook: "https://www.facebook.com/mohamed.rouahi.3/", resources: "https://drive.google.com/drive/folders/1EtNoobE1pIVvN-J1-TgM3bU16-VMGd_6?usp=sharing", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "شكري صوافي", subject: "عربية", facebook: "https://www.facebook.com/tasnim.saouafi/", resources: "https://drive.google.com/drive/folders/199IeHrBTUGOdjal8FB-8WoPUYTTMct4O?usp=sharing", image: "https://i.ibb.co/V9fYfGD/arabic.png" },
+            { name: "محمد عيادي", subject: "إيقاظ + رياضيات", facebook: "https://www.facebook.com/mohamed.ayadi69/", resources: "https://drive.google.com/drive/folders/1xAnyQ9L40_3nrFR2GppPAd9AOfOlale-?usp=sharing", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "نبيل فالح", subject: "عربية", facebook: "https://www.facebook.com/profile.php?id=61561050908824", resources: "https://drive.google.com/drive/folders/1XhzurdhqHPZijIP2-HQSGjasHWqlcaVH?usp=sharing", image: "https://i.ibb.co/V9fYfGD/arabic.png" },
+            { name: "وليد كراي", subject: "إيقاظ + رياضيات", facebook: "https://www.facebook.com/profile.php?id=100085695169714", resources: "https://drive.google.com/drive/folders/1IGNvjc3leq7jP8iBYoF4l6erYzesGDqk?usp=sharing", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "سفيان فرجاني", subject: "إيقاظ + رياضيات", facebook: "https://www.facebook.com/ziad.benamar.5/", resources: "https://drive.google.com/drive/folders/1fV6XEtS-ehiQZHXa-iW8RPJvF67lXplF?usp=sharing", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "وحيد طبلبي", subject: "عربية", facebook: "https://www.facebook.com/wahid.tbolbi", resources: "https://drive.google.com/drive/folders/1T39y_eOaP9mcrkatIgsuH8ZgxYPxrzta?usp=sharing", image: "https://i.ibb.co/V9fYfGD/arabic.png" },
+            { name: "خميس عويساوي", subject: "فرنسية", facebook: "https://www.facebook.com/khemaies.aouissaoui", resources: "https://drive.google.com/drive/folders/1zEoi1_L0EThT0Vxz6Uns7sTACCnT2jya?usp=sharing", image: "https://i.ibb.co/twRykSX/french.png" },
+            { name: "منير جامعي", subject: "إيقاظ + رياضيات", facebook: "https://www.facebook.com/mounir.jemai.7/", resources: "https://drive.google.com/drive/folders/1YLlt3kwMsKN88UyQDRTtWhn6IjZOwOCD?usp=sharing", image: "https://i.ibb.co/wRVLmXL/math.png" },
+            { name: "فوزي بدري", subject: "إنقليزية", facebook: "https://www.facebook.com/profile.php?id=100081266097608", resources: "https://drive.google.com/drive/folders/1pcCEaTljHtH5J07w8loBEupsV3_Ua3iE?usp=sharing", image: "https://i.ibb.co/Lpg0cvt/english.png" },
         ];
 
         function createTeacherCard(teacher) {
@@ -256,8 +260,8 @@
                     <h2>${teacher.name}</h2>
                     <div class="teacher-info">
                         <p>الاختصاص: ${teacher.subject}</p>
-                        <button class="teacher-button" onclick="openFacebook('${teacher.facebook}')">حساب فيسبوك</button>
-                        <button class="teacher-button" onclick="openEducationalResources('${teacher.name}')">الموارد التعليمية</button>
+                        <a href="${teacher.facebook}" target="_blank" class="teacher-button">حساب فيسبوك</a>
+                        <a href="${teacher.resources}" target="_blank" class="teacher-button">الموارد التعليمية</a>
                     </div>
                 </div>
             `;
@@ -281,7 +285,8 @@
                 'all': 'جميع المعلمين',
                 'إيقاظ + رياضيات': 'إيقاظ + رياضيات',
                 'عربية': 'عربية',
-                'فرنسية': 'فرنسية'
+                'فرنسية': 'فرنسية',
+                'إنقليزية': 'إنقليزية'
             };
             categoryElement.textContent = `الفئة المحددة: ${categories[subject]}`;
         }
@@ -291,8 +296,7 @@
             buttons.forEach(button => {
                 button.classList.remove('active');
                 if (button.textContent === (subject === 'all' ? 'الكل' : subject)) {
-                    button.classList.add('active');
-                }
+                    button.classList.add('active');}
             });
         }
 
@@ -301,21 +305,6 @@
             const themeIcon = document.querySelector('.theme-toggle i');
             themeIcon.classList.toggle('fa-moon');
             themeIcon.classList.toggle('fa-sun');
-        }
-
-        function goHome() {
-            // Add the logic to navigate to the home page
-            console.log('Navigating to home page');
-        }
-
-        function openFacebook(facebookUsername) {
-            // Add the logic to open Facebook profile
-            console.log(`Opening Facebook profile: https://www.facebook.com/${facebookUsername}`);
-        }
-
-        function openEducationalResources(teacherName) {
-            // Add the logic to open educational resources
-            console.log(`Opening educational resources for ${teacherName}`);
         }
 
         // Initialize the page with all teachers
